@@ -10,7 +10,7 @@ const SEA_Y = -0.02;
 const SLAB_H = 0.6;
 const PLAY_MS = 1400;
 // bump with each release (and the ?v= in index.html) so browsers don't mix cached old files with new ones
-const DATA_VERSION = 6;
+const DATA_VERSION = 7;
 
 const THEMES = {
   light: {
@@ -139,6 +139,7 @@ const state = {
   theme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
   selected: null, event: null, hoverEvent: null, playing: false, sliceY: 0,
   lens: { ww1: false, ww2: false }, lensAnim: { ww1: 0, ww2: 0 },
+  sideOn: { central: true, entente: true, axis: true, soviet: true, allied: true },
 };
 
 let data, snaps, meta, elev, land, gridW, gridH, events, wars, places;
@@ -618,6 +619,7 @@ function drawSliceTexture() {
   const phase = activePhase();
   if (phase) {
     for (const layer of phase.layers) {
+      if (!state.sideOn[layer.side]) continue;
       const colour = t.sides[layer.side];
       layer.path ??= texturePath(layer.p);
       ctx.globalAlpha = 0.22;
@@ -980,6 +982,7 @@ function updateLens() {
     if (!layer.visible) continue;
     layer.position.y = yearToY(layer.userData.t) + 0.03;
     for (const obj of layer.children) {
+      obj.visible = state.sideOn[obj.userData.side];
       obj.material.color.set(t.sides[obj.userData.side]);
       obj.material.opacity = (obj.isMesh ? 0.3 : 0.75) * k;
     }
@@ -1010,18 +1013,31 @@ function buildSideLegend() {
   const sides = Object.keys(WAR_SIDES).filter((w) => state.lens[w]).flatMap((w) => WAR_SIDES[w]);
   box.hidden = !sides.length;
   box.innerHTML = '';
+  // each entry toggles its side, so sides can be shown together or one at a time
   for (const side of sides) {
-    const item = document.createElement('span');
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'side-toggle' + (state.sideOn[side] ? '' : ' off');
+    item.setAttribute('aria-pressed', String(state.sideOn[side]));
+    item.title = t('sidesHint');
     const sw = document.createElement('i');
     sw.style.background = THEMES[state.theme].sides[side];
     item.append(sw, t(`side${side[0].toUpperCase()}${side.slice(1)}`));
+    item.addEventListener('click', () => toggleSide(side));
     box.appendChild(item);
   }
   if (sides.length) {
     const note = document.createElement('em');
-    note.textContent = t('phasesNote');
+    note.textContent = `${t('sidesHint')} · ${t('phasesNote')}`;
     box.appendChild(note);
   }
+}
+
+function toggleSide(side) {
+  state.sideOn[side] = !state.sideOn[side];
+  buildSideLegend();
+  updateLens();
+  drawSliceTexture();
 }
 
 function setLens(war, on) {

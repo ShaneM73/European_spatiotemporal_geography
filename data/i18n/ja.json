@@ -63,7 +63,8 @@
   "sideAxis": "枢軸国が占領・併合",
   "sideSoviet": "ソ連が併合",
   "sideAllied": "連合国が奪取",
-  "phasesNote": "戦時の領域はおおよそのものです。"
+  "phasesNote": "戦時の領域はおおよそのものです。",
+  "sidesHint": "色をクリックして表示／非表示"
  },
  "periods": {
   "antiquity": "古典古代",

@@ -63,7 +63,8 @@
   "sideAxis": "被轴心国占领或吞并",
   "sideSoviet": "被苏联吞并",
   "sideAllied": "被盟军夺取",
-  "phasesNote": "战时疆域为近似范围。"
+  "phasesNote": "战时疆域为近似范围。",
+  "sidesHint": "点击颜色可显示或隐藏"
  },
  "periods": {
   "antiquity": "古典时代",

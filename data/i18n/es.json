@@ -63,7 +63,8 @@
   "sideAxis": "Ocupado o anexionado por el Eje",
   "sideSoviet": "Anexionado por la URSS",
   "sideAllied": "Tomado por los Aliados",
-  "phasesNote": "Los territorios en tiempo de guerra son aproximados."
+  "phasesNote": "Los territorios en tiempo de guerra son aproximados.",
+  "sidesHint": "Haz clic en un color para mostrarlo u ocultarlo"
  },
  "periods": {
   "antiquity": "Antigüedad clásica",

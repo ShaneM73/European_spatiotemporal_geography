@@ -63,7 +63,8 @@
   "sideAxis": "Occupied or annexed by the Axis",
   "sideSoviet": "Annexed by the USSR",
   "sideAllied": "Taken by the Allies",
-  "phasesNote": "Wartime territories are approximate."
+  "phasesNote": "Wartime territories are approximate.",
+  "sidesHint": "Click a colour to show or hide it"
  },
  "periods": {
   "antiquity": "Classical Antiquity",

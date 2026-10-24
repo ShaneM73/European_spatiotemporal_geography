@@ -63,7 +63,8 @@
   "sideAxis": "Mihver Devletleri tarafından işgal veya ilhak edildi",
   "sideSoviet": "SSCB tarafından ilhak edildi",
   "sideAllied": "Müttefikler tarafından alındı",
-  "phasesNote": "Savaş dönemi toprakları yaklaşıktır."
+  "phasesNote": "Savaş dönemi toprakları yaklaşıktır.",
+  "sidesHint": "Göstermek veya gizlemek için bir renge tıklayın"
  },
  "periods": {
   "antiquity": "Klasik Antik Çağ",

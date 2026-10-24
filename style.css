@@ -204,6 +204,22 @@ h1 { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.25; letter-spa
 
 .seg.multi button.on { background: var(--accent); color: #fff; }
 .legend.sides i { width: 12px; height: 9px; transform: none; border-radius: 2px; opacity: 0.75; }
+.side-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: -2px -5px;
+  padding: 2px 5px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 11px;
+  cursor: pointer;
+}
+.side-toggle:hover { background: var(--chip); }
+.side-toggle.off { color: var(--muted); text-decoration: line-through; }
+.side-toggle.off i { opacity: 0.2; }
 .legend.sides em { flex-basis: 100%; font-size: 10.5px; }
 .axis-label.phase { padding: 0 0 0 8px; color: var(--muted); font-size: 10px; }
 .axis-label.phase b { color: var(--ink); font-weight: 600; margin-right: 4px; }

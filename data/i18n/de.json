@@ -63,7 +63,8 @@
   "sideAxis": "Von den Achsenmächten besetzt oder annektiert",
   "sideSoviet": "Von der UdSSR annektiert",
   "sideAllied": "Von den Alliierten eingenommen",
-  "phasesNote": "Kriegszeitliche Gebiete sind Näherungen."
+  "phasesNote": "Kriegszeitliche Gebiete sind Näherungen.",
+  "sidesHint": "Farbe anklicken zum Ein- oder Ausblenden"
  },
  "periods": {
   "antiquity": "Klassische Antike",

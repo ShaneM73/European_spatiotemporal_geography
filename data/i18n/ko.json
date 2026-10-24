@@ -63,7 +63,8 @@
   "sideAxis": "추축국이 점령 또는 병합",
   "sideSoviet": "소련이 병합",
   "sideAllied": "연합국이 획득",
-  "phasesNote": "전시 영역은 대략적인 것입니다."
+  "phasesNote": "전시 영역은 대략적인 것입니다.",
+  "sidesHint": "색을 클릭하면 표시하거나 숨깁니다"
  },
  "periods": {
   "antiquity": "고전 고대",
