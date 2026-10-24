@@ -56,6 +56,13 @@ const periodOf = (y) => {
 };
 const fmtArea = (a) => t('km2', { n: Math.round(a).toLocaleString(lang) });
 const catName = (cat) => strings.categories[cat] ?? fallback.categories[cat];
+// polity names come from the English source data; translations are keyed by that name
+const pn = (name) => strings.polities?.[name] || name;
+// full localized date for dated events, otherwise the year
+const fmtDate = (e) => (e.date
+  ? new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
+    .format(new Date(`${e.date}T12:00:00Z`))
+  : fmtYear(e.year));
 // localized title/place/text of an event, falling back to the English source
 const evText = (e, field) => strings.events[e.wiki]?.[field] ?? e[field];
 
@@ -100,7 +107,8 @@ function applyStaticStrings() {
   $('footerText').innerHTML = escapeHtml(t('footer'))
     .replace('{basemaps}', link('https://github.com/aourednik/historical-basemaps', 'historical-basemaps'))
     .replace('{terrain}', link('https://registry.opendata.aws/terrain-tiles/', 'AWS Terrain Tiles'))
-    + (lang === 'en' ? '' : ` ${escapeHtml(t('polityNote'))}`);
+    // polity names are only untranslated in a language that has no polity table
+    + (lang === 'en' || strings.polities ? '' : ` ${escapeHtml(t('polityNote'))}`);
   $('lang').value = lang;
 }
 
@@ -118,9 +126,11 @@ const state = {
   idx: 0, scale: 'linear', relief: 30, stack: true, labels: true, events: true, view: 'cube',
   theme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
   selected: null, event: null, hoverEvent: null, playing: false, sliceY: 0,
+  lens: { ww1: false, ww2: false }, lensAnim: { ww1: 0, ww2: 0 },
 };
 
-let data, snaps, meta, elev, land, gridW, gridH, events;
+let data, snaps, meta, elev, land, gridW, gridH, events, wars;
+let bandGroup, threadGroup;
 let renderer, scene, camera, controls, hemi, sun;
 let slice, terrain, terrainTex, texCanvas, texCtx, slab;
 let ghostGroup, frameLines, axisTicks, traceGroup, eventGroup, eventGuide, eventRing;
@@ -147,7 +157,10 @@ async function init() {
     getJson('data/boundaries.json'), loadImage('data/terrain.png'), getJson('data/events.json'),
   ]);
   data = json; snaps = data.snapshots; meta = data.meta;
-  events = ev.events.sort((a, b) => a.year - b.year);
+  wars = ev.wars;
+  events = ev.events;
+  for (const e of events) e.t = eventTime(e);
+  events.sort((a, b) => a.t - b.t);
   events.forEach((e, i) => {
     const [x, y] = laea(e.lon, e.lat);
     e.index = i;
@@ -272,20 +285,51 @@ function colourOf(f) {
   return pal[c % pal.length];
 }
 
-function timeY(i) {
-  if (state.scale === 'even') return (i / (snaps.length - 1)) * TIME_H;
-  const y0 = snaps[0].year, y1 = snaps[snaps.length - 1].year;
-  return ((snaps[i].year - y0) / (y1 - y0)) * TIME_H;
-}
+// Time axis: a year maps to [0, 1] (proportional or evenly spaced snapshots),
+// then focus bands (the time lens) are magnified to LENS_SHARE of the axis each.
+const lensShare = () => (state.lens.ww1 && state.lens.ww2 ? 0.3 : 0.42);
 
-function yearToY(year) {
+function base01(year) {
   const n = snaps.length;
   if (year <= snaps[0].year) return 0;
-  if (year >= snaps[n - 1].year) return TIME_H;
+  if (year >= snaps[n - 1].year) return 1;
+  if (state.scale !== 'even') return (year - snaps[0].year) / (snaps[n - 1].year - snaps[0].year);
   let i = 0;
   while (snaps[i + 1].year < year) i++;
-  const t = (year - snaps[i].year) / (snaps[i + 1].year - snaps[i].year);
-  return timeY(i) + t * (timeY(i + 1) - timeY(i));
+  return (i + (year - snaps[i].year) / (snaps[i + 1].year - snaps[i].year)) / (n - 1);
+}
+
+function warp(u) {
+  const bands = [];
+  for (const [war, [a, b]] of Object.entries(wars)) {
+    const k = state.lensAnim[war];
+    if (k <= 0) continue;
+    const ua = base01(a), ub = base01(b);
+    bands.push({ ua, ub, s: ub - ua + k * Math.max(0, lensShare() - (ub - ua)) });
+  }
+  if (!bands.length) return u;
+  bands.sort((p, q) => p.ua - q.ua);
+  const natural = 1 - bands.reduce((sum, b) => sum + b.ub - b.ua, 0);
+  const squeeze = (1 - bands.reduce((sum, b) => sum + b.s, 0)) / natural;
+  let out = 0, prev = 0;
+  for (const b of bands) {
+    if (u <= b.ua) return out + (u - prev) * squeeze;
+    out += (b.ua - prev) * squeeze;
+    if (u <= b.ub) return out + ((u - b.ua) / (b.ub - b.ua)) * b.s;
+    out += b.s;
+    prev = b.ub;
+  }
+  return out + (u - prev) * squeeze;
+}
+
+const yearToY = (year) => TIME_H * warp(base01(year));
+const timeY = (i) => yearToY(snaps[i].year);
+
+// fractional year of an event, using its exact date when known
+function eventTime(e) {
+  if (!e.date) return e.year;
+  const d = new Date(`${e.date}T12:00:00Z`);
+  return e.year + (d - Date.UTC(e.year, 0, 1)) / (365.25 * 864e5);
 }
 
 function heightAt(xw, zw) {
@@ -415,6 +459,27 @@ function buildScene() {
   eventGuide.visible = eventRing.visible = false;
   scene.add(eventGuide, eventRing);
 
+  // time lens: a translucent band per war, and a thread through its events in date order
+  bandGroup = new THREE.Group();
+  threadGroup = new THREE.Group();
+  for (const war of Object.keys(wars)) {
+    const box = new THREE.BoxGeometry(size.w, 1, size.d);
+    const band = new THREE.Group();
+    band.userData.war = war;
+    const fill = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, side: THREE.DoubleSide }));
+    const edges = new THREE.LineSegments(new THREE.EdgesGeometry(box), new THREE.LineBasicMaterial({ transparent: true }));
+    fill.renderOrder = edges.renderOrder = 0;
+    band.add(fill, edges);
+    band.position.set(center.x, 0, center.z);
+    bandGroup.add(band);
+
+    const thread = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ transparent: true, depthWrite: false }));
+    thread.userData.war = war;
+    thread.userData.events = events.filter((e) => e.war === war);
+    threadGroup.add(thread);
+  }
+  scene.add(bandGroup, threadGroup);
+
   onResize();
   addEventListener('resize', onResize);
   renderer.domElement.addEventListener('pointermove', onPointerMove);
@@ -528,6 +593,11 @@ function updateAxis() {
   const [x, z] = axisTicks.userData.corner;
   const pos = [];
   snaps.forEach((s, i) => pos.push(x, timeY(i), z, x - 1, timeY(i), z));
+  // yearly ticks inside open lens bands
+  for (const [war, [a, b]] of Object.entries(wars)) {
+    if (state.lensAnim[war] < 0.3) continue;
+    for (let y = Math.ceil(a); y <= b; y++) pos.push(x, yearToY(y), z, x - 0.6, yearToY(y), z);
+  }
   axisTicks.geometry.dispose();
   axisTicks.geometry = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
   axisTicks.material.color.set(t.frame);
@@ -628,23 +698,24 @@ function setIndex(i, instant = false) {
 function setScale(scale) {
   state.scale = scale;
   segOn('scale', scale);
-  updateAxis();
+  onTimeWarp();
   updateTimeline();
-  positionTrace();
-  updateGhosts();
+}
+
+// distance that fits a sphere of radius r, whichever of the two fov axes is tighter
+function fitDistance(r) {
+  const v = THREE.MathUtils.degToRad(camera.fov) / 2;
+  const usable = innerWidth > 760 ? (innerWidth - 340) / innerWidth : 1;
+  const h = Math.atan(Math.tan(v) * camera.aspect * usable);
+  return r / Math.sin(Math.min(v, h));
 }
 
 function setView(view, instant = false) {
   state.view = view;
   segOn('views', view);
   updateGhosts();
-  // distance that fits a sphere of radius r, whichever of the two fov axes is tighter
-  const fit = (r) => {
-    const v = THREE.MathUtils.degToRad(camera.fov) / 2;
-    const usable = innerWidth > 760 ? (innerWidth - 340) / innerWidth : 1;
-    const h = Math.atan(Math.tan(v) * camera.aspect * usable);
-    return r / Math.sin(Math.min(v, h));
-  };
+  updateLens();
+  const fit = fitDistance;
   const halfCube = Math.hypot(size.w, size.d, TIME_H) / 2;
   const halfMap = Math.hypot(size.w, size.d) / 2;
   const target = new THREE.Vector3(center.x, TIME_H * 0.5, center.z);
@@ -684,7 +755,7 @@ const snapshotFor = (year) => {
 // events between the current snapshot and the next one
 function inWindow(e) {
   const next = snaps[state.idx + 1];
-  return e.year >= snaps[state.idx].year && (!next || e.year < next.year);
+  return e.t >= snaps[state.idx].year && (!next || e.t < next.year);
 }
 
 function selectEvent(e, jump = true) {
@@ -704,7 +775,7 @@ function updateEventCard() {
   $('evCat').style.color = colour;
   $('evDot').style.background = colour;
   $('evTitle').textContent = evText(e, 'title');
-  $('evWhen').textContent = `${fmtYear(e.year)} · ${evText(e, 'place')}`;
+  $('evWhen').textContent = `${fmtDate(e)} · ${evText(e, 'place')}`;
   $('evText').textContent = evText(e, 'text');
   $('evLink').href = wikiUrl(e);
   const si = snapshotFor(e.year);
@@ -714,14 +785,76 @@ function updateEventCard() {
   $('evNext').disabled = e.index === events.length - 1;
 }
 
+// a war's events count as current while its lens is open, so the whole war reads at once
+const lensOpen = (e) => !!e.war && state.lensAnim[e.war] > 0.5;
+
+function updateLens() {
+  const t = THEMES[state.theme];
+  for (const band of bandGroup.children) {
+    const [a, b] = wars[band.userData.war];
+    const k = state.lensAnim[band.userData.war];
+    const y0 = yearToY(a), y1 = yearToY(b);
+    band.visible = k > 0.01;
+    band.position.y = (y0 + y1) / 2;
+    band.scale.y = Math.max(0.01, y1 - y0);
+    band.children[0].material.color.set(t.accent);
+    band.children[0].material.opacity = 0.05 * k;
+    band.children[1].material.color.set(t.accent);
+    band.children[1].material.opacity = 0.45 * k;
+  }
+  for (const thread of threadGroup.children) {
+    const k = state.lensAnim[thread.userData.war];
+    thread.visible = k > 0.01 && state.events && state.view !== 'map';
+    if (!thread.visible) continue;
+    const pts = thread.userData.events.map((e) => new THREE.Vector3(e.x, yearToY(e.t), e.z));
+    thread.geometry.setFromPoints(pts);
+    thread.material.color.set(t.accent);
+    thread.material.opacity = 0.55 * k;
+  }
+}
+
+// call whenever the time mapping changes (scale, lens)
+function onTimeWarp() {
+  updateAxis();
+  positionTrace();
+  updateGhosts();
+  updateLens();
+}
+
+function setLens(war, on) {
+  state.lens[war] = on;
+  for (const b of $('focus').querySelectorAll('button')) b.classList.toggle('on', state.lens[b.dataset.war]);
+  // opening a lens jumps to the borders in force when that war began and frames the band
+  if (on) {
+    togglePlay(false);
+    setIndex(snapshotFor(wars[war][0]));
+    if (state.view !== 'map') focusBand(war);
+  }
+}
+
+// camera on an open band, lower so the stretched time axis has room; uses the band's final position
+function focusBand(war) {
+  const saved = { ...state.lensAnim };
+  for (const w of Object.keys(wars)) state.lensAnim[w] = state.lens[w] ? 1 : 0;
+  const [a, b] = wars[war];
+  const mid = (yearToY(a) + yearToY(b)) / 2;
+  Object.assign(state.lensAnim, saved);
+  const target = new THREE.Vector3(center.x, mid, center.z);
+  const pos = new THREE.Vector3(-0.62, 0.36, 0.8).normalize()
+    .multiplyScalar(fitDistance(0.62 * Math.hypot(size.w, size.d, TIME_H) / 2)).add(target);
+  state.view = 'cube';
+  segOn('views', 'cube');
+  cameraTween = { t: 0, p0: camera.position.clone(), t0: controls.target.clone(), p1: pos, t1: target };
+}
+
 function updateEvents() {
   const t = THEMES[state.theme];
   eventGroup.visible = state.events;
   for (const m of eventGroup.children) {
     const e = m.userData.event;
-    const now = inWindow(e);
+    const now = inWindow(e) || lensOpen(e);
     const focus = e === state.event || e === state.hoverEvent;
-    let y = yearToY(e.year);
+    let y = yearToY(e.t);
     if (state.view === 'map') {
       // in map view only the current period is shown, pinned to the terrain surface
       m.visible = now || focus;
@@ -767,6 +900,7 @@ function applyTheme() {
   updateAxis();
   drawSliceTexture();
   updateGhosts();
+  updateLens();
   buildTrace();
   updateSelectionPanel();
   updateEventCard();
@@ -797,6 +931,10 @@ function segOn(id, value) {
 function buildUI() {
   $('views').addEventListener('click', (e) => e.target.dataset.view && setView(e.target.dataset.view));
   $('scale').addEventListener('click', (e) => e.target.dataset.scale && setScale(e.target.dataset.scale));
+  $('focus').addEventListener('click', (e) => {
+    const war = e.target.dataset.war;
+    if (war) setLens(war, !state.lens[war]);
+  });
   $('theme').addEventListener('click', (e) => e.target.dataset.theme && setTheme(e.target.dataset.theme));
   let reliefPending = false;
   $('relief').addEventListener('input', (e) => {
@@ -864,6 +1002,20 @@ function buildUI() {
     $('labels').appendChild(el);
     axisLabels.push({ el, year });
   }
+  // per-year labels and a name for each lens band, shown while the band is open
+  for (const [war, [a, b]] of Object.entries(wars)) {
+    for (let year = Math.ceil(a); year <= b; year++) {
+      const el = document.createElement('div');
+      el.className = 'axis-label band';
+      el.textContent = shortYear(year);
+      $('labels').appendChild(el);
+      axisLabels.push({ el, year, war });
+    }
+    const el = document.createElement('div');
+    el.className = 'axis-label band-name';
+    $('labels').appendChild(el);
+    axisLabels.push({ el, year: (a + b) / 2, war, name: true });
+  }
   const nowLabel = document.createElement('div');
   nowLabel.className = 'axis-label now';
   $('labels').appendChild(nowLabel);
@@ -897,6 +1049,17 @@ function updateTimeline() {
     el.title = fmtYear(s.year);
     ticks.appendChild(el);
   });
+  for (const [war, [a, b]] of Object.entries(wars)) {
+    const k = state.lensAnim[war];
+    if (k <= 0.01) continue;
+    const el = document.createElement('div');
+    el.className = 'tl-band';
+    el.style.left = `${(yearToY(a) / TIME_H) * 100}%`;
+    el.style.width = `${((yearToY(b) - yearToY(a)) / TIME_H) * 100}%`;
+    el.style.opacity = k;
+    el.innerHTML = `<span>${escapeHtml(t(war))}</span>`;
+    ticks.appendChild(el);
+  }
   for (const year of AXIS_YEARS) {
     const el = document.createElement('div');
     el.className = 'tick-label' + (year === 1 || year === 1500 ? ' minor' : '');
@@ -910,7 +1073,7 @@ function updateTimeline() {
       const el = document.createElement('div');
       el.className = 'ev-dot' + (e === state.event ? ' on' : '');
       el.dataset.event = e.index;
-      el.style.left = `${(yearToY(e.year) / TIME_H) * 100}%`;
+      el.style.left = `${(yearToY(e.t) / TIME_H) * 100}%`;
       el.style.background = t.events[e.cat];
       el.title = `${shortYear(e.year)} · ${evText(e, 'title')}`;
       ticks.appendChild(el);
@@ -926,10 +1089,10 @@ function updateSelectionPanel() {
   const years = snaps.filter((s) => s.features.some((f) => f.n === state.selected));
   const here = snaps[state.idx].features.find((f) => f.n === state.selected);
   const ref = here || years[years.length - 1].features.find((f) => f.n === state.selected);
-  $('selName').textContent = state.selected;
+  $('selName').textContent = pn(state.selected);
   $('selSwatch').style.background = colourOf(ref);
   const bits = [];
-  if (ref.s && ref.s !== ref.n) bits.push(t('under', { name: ref.s }));
+  if (ref.s && ref.s !== ref.n) bits.push(t('under', { name: pn(ref.s) }));
   bits.push(here ? t('inView', { area: fmtArea(here.a) }) : t('notPresent', { year: fmtYear(snaps[state.idx].year) }));
   $('selMeta').textContent = bits.join(' · ');
   const chips = $('selYears');
@@ -1014,11 +1177,11 @@ function onPointerMove(e) {
     const lines = [];
     if (hit) {
       lines.push(`<b>${escapeHtml(evText(hit, 'title'))}</b>`,
-        `<span>${escapeHtml(fmtYear(hit.year))} · ${escapeHtml(evText(hit, 'place'))}</span>`);
+        `<span>${escapeHtml(fmtDate(hit))} · ${escapeHtml(evText(hit, 'place'))}</span>`);
     } else {
-      lines.push(`<b>${escapeHtml(f.n)}</b>`);
-      if (f.s && f.s !== f.n) lines.push(escapeHtml(t('under', { name: f.s })));
-      if (f.o && f.o !== f.n && f.o !== f.s) lines.push(escapeHtml(t('partOf', { name: f.o })));
+      lines.push(`<b>${escapeHtml(pn(f.n))}</b>`);
+      if (f.s && f.s !== f.n) lines.push(escapeHtml(t('under', { name: pn(f.s) })));
+      if (f.o && f.o !== f.n && f.o !== f.s) lines.push(escapeHtml(t('partOf', { name: pn(f.o) })));
       const precision = PRECISION[f.b] ? ' · ' + t('bordersPrecision', { precision: t(PRECISION[f.b]) }) : '';
       lines.push(`<span>${escapeHtml(fmtArea(f.a) + precision)}</span>`);
     }
@@ -1045,6 +1208,20 @@ const escapeHtml = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt
 const tmp = new THREE.Vector3();
 
 function frame() {
+  // open or close time-lens bands smoothly
+  let warped = false;
+  for (const war of Object.keys(wars)) {
+    const target = state.lens[war] ? 1 : 0;
+    const k = state.lensAnim[war];
+    if (k === target) continue;
+    state.lensAnim[war] = Math.abs(target - k) < 0.02 ? target : k + (target - k) * 0.1;
+    warped = true;
+  }
+  if (warped) {
+    onTimeWarp();
+    updateTimeline();
+  }
+
   // slide the active slice along the time axis
   const goal = timeY(state.idx);
   const prev = state.sliceY;
@@ -1092,7 +1269,7 @@ function updateLabels() {
     if (!p.visible) continue;
     e.screen = p;
     const focus = e === state.event || e === state.hoverEvent;
-    if (!focus && !(inWindow(e) && state.labels)) continue;
+    if (!focus && !((inWindow(e) || lensOpen(e)) && state.labels)) continue;
     const text = `${shortYear(e.year)} · ${evText(e, 'title')}`;
     const box = [p.x + 8, p.y - 9, p.x + 16 + textWidth(text, 11), p.y + 9];
     if (!focus && overlaps(box)) continue;
@@ -1119,9 +1296,10 @@ function updateLabels() {
       const lx = f.l[0] / UNIT, lz = -f.l[1] / UNIT;
       const p = project(lx, state.sliceY + Math.max(0, heightAt(lx, lz)) + 0.25, lz);
       if (!p.visible || p.x < 0 || p.y < 0 || p.x > innerWidth || p.y > innerHeight) continue;
-      const text = f.n.length > 28 ? f.n.slice(0, 26) + '…' : f.n;
+      const name = pn(f.n);
+      const text = [...name].length > 28 ? [...name].slice(0, 26).join('') + '…' : name;
       const major = f.a > 400000;
-      const w = text.length * (major ? 8.2 : 7) + 6, h = 15;
+      const w = textWidth(text, major ? 13 : 11.3) + 6, h = 15;
       const box = [p.x - w / 2, p.y - h / 2, p.x + w / 2, p.y + h / 2];
       if (!isSel && overlaps(box)) continue;
       placed.push(box);
@@ -1137,14 +1315,20 @@ function updateLabels() {
 
   // time axis labels
   const [x, z] = axisTicks.userData.corner;
+  const openBand = (year) => Object.entries(wars).some(([w, [a, b]]) => state.lensAnim[w] > 0.5 && year >= a - 3 && year <= b + 3);
   for (const a of axisLabels) {
     const year = a.year ?? snaps[state.idx].year;
     const y = a.year === null ? state.sliceY : yearToY(year);
-    const p = project(x - 1.2, y, z);
-    const hideNear = a.year !== null && Math.abs(yearToY(year) - state.sliceY) < 0.9;
-    a.el.style.display = p.visible && state.view !== 'map' && !hideNear ? '' : 'none';
+    // band names sit on the cube's opposite (east) edge, clear of the year labels and the panel
+    const p = a.name ? project(center.x + size.w / 2 + 1, y, z) : project(x - 1.2, y, z);
+    let show = p.visible && state.view !== 'map';
+    if (a.war) show &&= state.lensAnim[a.war] > 0.5;
+    else if (a.year !== null) show &&= !openBand(year);  // round-year labels give way inside open bands
+    if (!a.name && a.year !== null) show &&= Math.abs(y - state.sliceY) > 0.5;
+    a.el.style.display = show ? '' : 'none';
     if (a.year === null) a.el.textContent = shortYear(year);
-    a.el.style.transform = `translate(${p.x}px, ${p.y}px) translate(-100%, -50%)`;
+    if (a.name) a.el.textContent = t(`${a.war}Name`);
+    a.el.style.transform = `translate(${p.x}px, ${p.y}px) translate(${a.name ? '0' : '-100%'}, -50%)`;
   }
 }
 

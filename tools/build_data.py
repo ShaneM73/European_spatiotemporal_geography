@@ -95,6 +95,15 @@ def ring_ints(coords):
     return flat
 
 
+# names whose accented letter was lost (U+FFFD) in the source files
+REPAIRED_NAMES = {"Arag�n": "Aragón", "Monte Alb�n": "Monte Albán", "Teotihuac�n": "Teotihuacán"}
+
+
+def clean_name(v):
+    v = (v or "").strip()
+    return REPAIRED_NAMES.get(v, v.replace("�", ""))
+
+
 def feature(name, props, parts):
     # label the largest part, preferring parts not cut by the map frame (e.g. Denmark, not Greenland)
     biggest = max(parts, key=lambda q: q.area)
@@ -102,7 +111,7 @@ def feature(name, props, parts):
     if inner and max(q.area for q in inner) >= 0.25 * biggest.area:
         biggest = max(inner, key=lambda q: q.area)
     lp = polylabel(biggest, tolerance=5.0)
-    clean = lambda v: (v or "").replace("�", "–").strip()
+    clean = clean_name
     return {
         "n": name,
         "s": clean(props.get("SUBJECTO")) or name,
@@ -128,7 +137,7 @@ def build_boundaries(raw):
         groups = {}  # a polity can span several source records
         for f in gj["features"]:
             p = f.get("properties") or {}
-            name = (p.get("NAME") or "").replace("�", "–").strip()
+            name = clean_name(p.get("NAME"))
             if name and f.get("geometry"):
                 groups.setdefault(name, (p, []))[1].append(f["geometry"])
         feats, shapes = [], []

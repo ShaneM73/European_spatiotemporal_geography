@@ -1,6 +1,6 @@
 # European Spatiotemporal Geography
 
-An interactive 3D **space–time cube** of Europe, North Africa and the Near East, from Iceland and Morocco to Persia and the Urals. A topographic relief map shows political boundaries at a chosen moment. It slides along a vertical time axis from 500 BCE to 2010, through the stacked boundary layers of 44 historical snapshots. 68 historic events are placed in the cube at their place and time.
+An interactive 3D **space–time cube** of Europe, North Africa and the Near East, from Iceland and Morocco to Persia and the Urals. A topographic relief map shows political boundaries at a chosen moment. It slides along a vertical time axis from 500 BCE to 2010, through the stacked boundary layers of 44 historical snapshots. 109 historic events are placed in the cube at their place and time, including day-dated campaigns of both world wars.
 
 ## Features
 
@@ -9,7 +9,8 @@ An interactive 3D **space–time cube** of Europe, North Africa and the Near Eas
 - **Trace a polity**: click a country to highlight its footprint in every snapshot where it appears, as a column through time.
 - **Historic events**: diamonds mark battles, treaties, religious and cultural turning points, and disasters at their place and year. The current period's events are labelled. Click one, in the cube or on the timeline, for a summary card that shows the borders in force at the time and links to Wikipedia. Arrows step through events in order.
 - **Views**: Cube, Map (top-down) and Profile (side-on, time vertical). The time axis can be proportional to years or evenly spaced per snapshot.
-- **12 languages**: English, 简体中文, 日本語, 한국어, Русский, Deutsch, Français, Español, Italiano, Português, Türkçe and العربية (right-to-left). Interface, periods and all event summaries are translated, and Wikipedia links open in the reader's language where an article exists. The language is picked from the browser, remembered, and can be shared with `#lang=de`. Polity names stay as in the source data (English).
+- **War focus (time lens)**: stretches 1914–1919 and/or 1938–1945 to a large share of the time axis. The war's day-dated events then spread out month by month above the borders of 1914 or 1938. A thread links them in date order, so you can follow the war across space and time. No openly licensed year-by-year wartime border data exists, so the borders themselves stay at the snapshot years.
+- **12 languages**: English, 简体中文, 日本語, 한국어, Русский, Deutsch, Français, Español, Italiano, Português, Türkçe and العربية (right-to-left). Interface, periods and all event summaries are translated, and Wikipedia links open in the reader's language where an article exists. The language is picked from the browser, remembered, and can be shared with `#lang=de`. Polity names (535 historical states and peoples) are translated too.
 - Timeline scrubbing, playback, keyboard control (← → step, space to play, Esc to clear), light and dark themes, and shareable links (`#year=1815`).
 
 ## Running locally

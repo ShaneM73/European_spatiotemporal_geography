@@ -51,7 +51,12 @@
   "close": "Close",
   "clearSelection": "Clear selection",
   "toggleControls": "Toggle controls",
-  "snapshotYear": "Snapshot year"
+  "snapshotYear": "Snapshot year",
+  "focus": "War focus",
+  "ww1": "WWI",
+  "ww2": "WWII",
+  "ww1Name": "First World War",
+  "ww2Name": "Second World War"
  },
  "periods": {
   "antiquity": "Classical Antiquity",
@@ -411,6 +416,212 @@
    "title": "EU eastern enlargement",
    "place": "Brussels",
    "text": "Ten countries, most formerly in the Soviet sphere, join the European Union in its largest single expansion."
+  },
+  "German_invasion_of_Belgium_(1914)": {
+   "title": "German invasion of Belgium",
+   "place": "Liège, Belgium",
+   "text": "Germany invades neutral Belgium to outflank France under the Schlieffen Plan, bringing Britain into the war."
+  },
+  "Battle_of_Tannenberg": {
+   "title": "Battle of Tannenberg",
+   "place": "East Prussia",
+   "text": "German forces encircle and destroy the Russian Second Army in East Prussia within the first month of the war."
+  },
+  "First_Battle_of_the_Marne": {
+   "title": "First Battle of the Marne",
+   "place": "Marne valley, France",
+   "text": "French and British counter-attacks halt the German advance on Paris; both sides then dig the trenches of the Western Front."
+  },
+  "First_Battle_of_Ypres": {
+   "title": "First Battle of Ypres",
+   "place": "Ypres, Flanders",
+   "text": "The 'race to the sea' ends in Flanders; the front line now runs unbroken from the Channel to Switzerland."
+  },
+  "Armenian_genocide": {
+   "title": "Armenian genocide",
+   "place": "Ottoman Anatolia",
+   "text": "Ottoman authorities arrest Armenian leaders in Constantinople and begin mass deportations and killings; about a million Armenians die."
+  },
+  "Gallipoli_campaign": {
+   "title": "Gallipoli landings",
+   "place": "Gallipoli peninsula",
+   "text": "Allied troops land on the Gallipoli peninsula to open the Dardanelles; the campaign fails and is abandoned in January 1916."
+  },
+  "Battles_of_the_Isonzo": {
+   "title": "Battles of the Isonzo",
+   "place": "Isonzo river, Julian Alps",
+   "text": "After Italy joins the Allies, it launches the first of twelve costly offensives against Austria-Hungary along the Isonzo."
+  },
+  "Battle_of_Jutland": {
+   "title": "Battle of Jutland",
+   "place": "North Sea off Jutland",
+   "text": "The largest naval battle of the war; the German fleet inflicts heavier losses but never again challenges British control of the North Sea."
+  },
+  "Brusilov_offensive": {
+   "title": "Brusilov offensive",
+   "place": "Volhynia and Galicia",
+   "text": "Russia's most successful offensive of the war shatters much of the Austro-Hungarian army on the Eastern Front."
+  },
+  "Arab_Revolt": {
+   "title": "Arab Revolt",
+   "place": "Hejaz",
+   "text": "Sharif Hussein of Mecca rises against Ottoman rule with British support, opening a new front in Arabia and the Levant."
+  },
+  "Battle_of_the_Somme": {
+   "title": "Battle of the Somme",
+   "place": "Somme, France",
+   "text": "A British and French offensive whose first day is the bloodiest in British military history; over a million men are killed or wounded."
+  },
+  "Battle_of_Passchendaele": {
+   "title": "Battle of Passchendaele",
+   "place": "Passendale, Flanders",
+   "text": "A British offensive in Flanders bogs down in rain and mud, gaining a few miles at enormous cost."
+  },
+  "Battle_of_Caporetto": {
+   "title": "Battle of Caporetto",
+   "place": "Kobarid, Julian Alps",
+   "text": "Austro-German forces break through the Italian line and drive it back to the Piave river."
+  },
+  "Battle_of_Jerusalem": {
+   "title": "Capture of Jerusalem",
+   "place": "Jerusalem",
+   "text": "British forces under Allenby take Jerusalem from the Ottoman Empire during the Sinai and Palestine campaign."
+  },
+  "Treaty_of_Brest-Litovsk": {
+   "title": "Treaty of Brest-Litovsk",
+   "place": "Brest-Litovsk",
+   "text": "Soviet Russia leaves the war, ceding the Baltic lands, Poland, Belarus and Ukraine to German control."
+  },
+  "German_spring_offensive": {
+   "title": "German spring offensive",
+   "place": "Saint-Quentin, France",
+   "text": "Germany's last great offensive gains ground quickly but exhausts its army before American troops arrive in strength."
+  },
+  "Hundred_Days_Offensive": {
+   "title": "Hundred Days Offensive",
+   "place": "Amiens, France",
+   "text": "Beginning at Amiens, Allied attacks push the German army back across the Western Front in a war of movement."
+  },
+  "Armistice_of_11_November_1918": {
+   "title": "Armistice of 11 November",
+   "place": "Compiègne, France",
+   "text": "Germany signs an armistice in a railway carriage at Compiègne; fighting on the Western Front ends at 11 a.m."
+  },
+  "Anschluss": {
+   "title": "Anschluss",
+   "place": "Vienna",
+   "text": "Nazi Germany annexes Austria, the first of Hitler's territorial expansions without war."
+  },
+  "Munich_Agreement": {
+   "title": "Munich Agreement",
+   "place": "Munich",
+   "text": "Britain, France and Italy allow Germany to annex the Sudetenland from Czechoslovakia, the high point of appeasement."
+  },
+  "Molotov%E2%80%93Ribbentrop_Pact": {
+   "title": "Molotov–Ribbentrop Pact",
+   "place": "Moscow",
+   "text": "Germany and the Soviet Union sign a non-aggression pact with a secret protocol dividing Eastern Europe between them."
+  },
+  "Winter_War": {
+   "title": "Winter War",
+   "place": "Karelian Isthmus",
+   "text": "The Soviet Union invades Finland; Finland resists for over three months before ceding territory."
+  },
+  "Operation_Weser%C3%BCbung": {
+   "title": "Invasion of Denmark and Norway",
+   "place": "Oslo",
+   "text": "Germany occupies Denmark in a day and invades Norway to secure Swedish iron ore and North Atlantic bases."
+  },
+  "Battle_of_France": {
+   "title": "Battle of France",
+   "place": "Sedan, Ardennes",
+   "text": "German armour breaks through the Ardennes; the Netherlands, Belgium and France fall within six weeks."
+  },
+  "Dunkirk_evacuation": {
+   "title": "Dunkirk evacuation",
+   "place": "Dunkirk",
+   "text": "More than 330,000 British and French soldiers are evacuated by sea from the beaches of Dunkirk."
+  },
+  "Battle_of_Britain": {
+   "title": "Battle of Britain",
+   "place": "Southern England",
+   "text": "The Royal Air Force defeats the Luftwaffe's attempt to win air superiority over Britain, ending invasion plans."
+  },
+  "Invasion_of_Yugoslavia": {
+   "title": "Invasion of Yugoslavia and Greece",
+   "place": "Belgrade",
+   "text": "Axis forces overrun Yugoslavia and Greece in a few weeks, securing the Balkans before the attack on the Soviet Union."
+  },
+  "Battle_of_Crete": {
+   "title": "Battle of Crete",
+   "place": "Crete",
+   "text": "German paratroopers seize Crete in the first large airborne invasion in history, at heavy cost."
+  },
+  "Operation_Barbarossa": {
+   "title": "Operation Barbarossa",
+   "place": "Brest, Soviet border",
+   "text": "Germany and its allies invade the Soviet Union along a front from the Baltic to the Black Sea, the largest invasion in history."
+  },
+  "Siege_of_Leningrad": {
+   "title": "Siege of Leningrad",
+   "place": "Leningrad",
+   "text": "German and Finnish forces cut off Leningrad; the 872-day siege kills around a million civilians, mostly by starvation."
+  },
+  "Battle_of_Moscow": {
+   "title": "Battle of Moscow",
+   "place": "Moscow",
+   "text": "The German drive on Moscow is stopped at the city's approaches, and a Soviet winter counter-offensive pushes it back."
+  },
+  "Wannsee_Conference": {
+   "title": "Wannsee Conference",
+   "place": "Berlin-Wannsee",
+   "text": "Senior Nazi officials coordinate the 'Final Solution', the systematic murder of Europe's Jews in the Holocaust."
+  },
+  "Second_Battle_of_El_Alamein": {
+   "title": "Second Battle of El Alamein",
+   "place": "El Alamein, Egypt",
+   "text": "British Commonwealth forces defeat Rommel's Axis army in Egypt, turning the tide in North Africa."
+  },
+  "Battle_of_Kursk": {
+   "title": "Battle of Kursk",
+   "place": "Kursk salient",
+   "text": "Germany's last major offensive in the East fails; the Red Army takes the strategic initiative for the rest of the war."
+  },
+  "Allied_invasion_of_Sicily": {
+   "title": "Allied invasion of Sicily",
+   "place": "Sicily",
+   "text": "Allied landings in Sicily lead to Mussolini's fall and Italy's armistice in September."
+  },
+  "Operation_Bagration": {
+   "title": "Operation Bagration",
+   "place": "Belarus",
+   "text": "A massive Soviet offensive destroys German Army Group Centre and advances to the Vistula."
+  },
+  "Warsaw_Uprising": {
+   "title": "Warsaw Uprising",
+   "place": "Warsaw",
+   "text": "The Polish Home Army rises against German occupation; after 63 days the uprising is crushed and the city razed."
+  },
+  "Battle_of_the_Bulge": {
+   "title": "Battle of the Bulge",
+   "place": "Ardennes",
+   "text": "Germany's last offensive in the West surprises the Allies in the Ardennes but is defeated within weeks."
+  },
+  "Auschwitz_concentration_camp": {
+   "title": "Liberation of Auschwitz",
+   "place": "Oświęcim, Poland",
+   "text": "Soviet troops liberate Auschwitz-Birkenau, where about 1.1 million people, most of them Jews, were murdered."
+  },
+  "Yalta_Conference": {
+   "title": "Yalta Conference",
+   "place": "Yalta, Crimea",
+   "text": "Roosevelt, Churchill and Stalin plan Germany's defeat and occupation and the post-war order in Europe."
+  },
+  "Potsdam_Conference": {
+   "title": "Potsdam Conference",
+   "place": "Potsdam",
+   "text": "The victorious Allies settle Germany's occupation zones, the new Polish border and the expulsion of Germans from the East."
   }
- }
+ },
+ "polities": {}
 }
