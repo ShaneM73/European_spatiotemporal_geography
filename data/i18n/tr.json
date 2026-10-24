@@ -1,0 +1,416 @@
+{
+ "lang": "tr",
+ "name": "Türkçe",
+ "dir": "ltr",
+ "ui": {
+  "eyebrow": "Uzay-zaman atlası · MÖ 500 – 2010",
+  "title": "Avrupa'nın Uzay-Zamansal Coğrafyası",
+  "language": "Dil",
+  "view": "Görünüm",
+  "viewCube": "Küp",
+  "viewMap": "Harita",
+  "viewProfile": "Profil",
+  "timeAxis": "Zaman ekseni",
+  "proportional": "Orantılı",
+  "even": "Eşit aralıklı",
+  "relief": "Rölyef",
+  "timeStack": "Zaman katmanları",
+  "labels": "Etiketler",
+  "events": "Tarihî olaylar",
+  "theme": "Tema",
+  "light": "Açık",
+  "dark": "Koyu",
+  "hint": "Döndürmek için sürükleyin · yakınlaştırmak için kaydırın · zaman içinde izlemek için bir siyasi birime tıklayın · öyküsü için bir ◆ olaya tıklayın · ← → adım · boşluk oynatır",
+  "footer": "Sınırlar: {basemaps} (A. Ourednik, GPL-3.0). Arazi: {terrain} (SRTM, GMTED, ETOPO1 ve diğerleri). Olay özetleri Vikipedi'ye bağlanır. Tarihî sınırlar yaklaşıktır.",
+  "polityNote": "Siyasi birim adları kaynak verideki gibi (İngilizce) gösterilir.",
+  "loading": "Atlas yükleniyor…",
+  "errorFile": "Lütfen bu sayfayı bir web sunucusu üzerinden açın (ör. GitHub Pages veya `python -m http.server`).",
+  "errorLoad": "Atlas yüklenemedi: {msg}",
+  "snapshotUntil": "{n} siyasi birimlik kesit · {year} yılına kadar geçerli",
+  "snapshotLatest": "{n} siyasi birimlik kesit · en güncel",
+  "presentIn": "Yer aldığı kesitler",
+  "under": "{name} yönetiminde",
+  "partOf": "{name} bünyesinde",
+  "inView": "{area} (görünümde)",
+  "notPresent": "{year} yılında mevcut değil",
+  "bordersPrecision": "sınırlar: {precision}",
+  "precision1": "yaklaşık",
+  "precision2": "orta hassasiyette",
+  "precision3": "hassas",
+  "bordersOf": "{year} yılı sınırları",
+  "wikipedia": "Vikipedi ↗",
+  "yearCE": "MS {y}",
+  "yearBCE": "MÖ {y}",
+  "shortCE": "{y}",
+  "shortBCE": "MÖ {y}",
+  "km2": "{n} km²",
+  "play": "Oynat",
+  "pause": "Duraklat",
+  "prevEvent": "Önceki olay",
+  "nextEvent": "Sonraki olay",
+  "close": "Kapat",
+  "clearSelection": "Seçimi temizle",
+  "toggleControls": "Denetimleri göster/gizle",
+  "snapshotYear": "Kesit yılı"
+ },
+ "periods": {
+  "antiquity": "Klasik Antik Çağ",
+  "lateAntiquity": "Geç Antik Çağ",
+  "earlyMiddleAges": "Erken Orta Çağ",
+  "highMiddleAges": "Yüksek Orta Çağ",
+  "lateMiddleAges": "Geç Orta Çağ",
+  "earlyModern": "Erken Modern Dönem",
+  "long19th": "Uzun 19. Yüzyıl",
+  "worldWars": "Dünya Savaşları ve Savaş Arası",
+  "coldWar": "Soğuk Savaş",
+  "contemporary": "Çağdaş Avrupa"
+ },
+ "categories": {
+  "conflict": "Muharebeler ve savaşlar",
+  "politics": "Devletler ve antlaşmalar",
+  "culture": "Din ve kültür",
+  "society": "Toplum, ekonomi ve afetler"
+ },
+ "events": {
+  "Battle_of_Marathon": {
+   "title": "Maraton Muharebesi",
+   "place": "Maraton, Attika",
+   "text": "Atinalı ve Plataialı hoplitler Yunanistan'a yönelik ilk Pers istilasını püskürtür; bu, Atina'nın özgüveninde kurucu bir andır."
+  },
+  "Battle_of_Salamis": {
+   "title": "Salamis Deniz Muharebesi",
+   "place": "Salamis Boğazı",
+   "text": "Müttefik Yunan donanması, Salamis açıklarındaki dar boğazda Serhas'ın filosunun büyük kısmını yok ederek ikinci Pers istilasını geri püskürtür."
+  },
+  "Peloponnesian_War": {
+   "title": "Peloponez Savaşı başlıyor",
+   "place": "Atina ve Sparta",
+   "text": "Atina ve Sparta ittifakları arasındaki 27 yıllık savaş klasik Yunanistan'ı tüketir ve MÖ 404'te Atina'nın yenilgisiyle sona erer."
+  },
+  "Battle_of_Gaugamela": {
+   "title": "Gaugamela Muharebesi",
+   "place": "Erbil yakınları, Mezopotamya",
+   "text": "Büyük İskender, III. Darius'u yenerek Ahameniş Pers İmparatorluğu'nu yıkar ve Helenistik çağın kapısını açar."
+  },
+  "Death_of_Alexander_the_Great": {
+   "title": "İskender'in ölümü",
+   "place": "Babil",
+   "text": "İskender 32 yaşında Babil'de ölür; generalleri (diadokhlar) imparatorluğunu birbirine rakip Helenistik krallıklara böler."
+  },
+  "Hannibal%27s_crossing_of_the_Alps": {
+   "title": "Hannibal Alpleri aşıyor",
+   "place": "Batı Alpler",
+   "text": "İkinci Pön Savaşı'nda Kartacalı Hannibal, savaş filleriyle donanmış ordusunu Alplerden geçirerek Roma İtalyası'nı istila eder."
+  },
+  "Siege_of_Carthage_(Third_Punic_War)": {
+   "title": "Kartaca'nın yıkılışı",
+   "place": "Kartaca",
+   "text": "Roma, Üçüncü Pön Savaşı'nın sonunda Kartaca'yı yerle bir eder (aynı yıl Korint'i de yağmalar) ve Akdeniz'in hâkimi olur."
+  },
+  "Assassination_of_Julius_Caesar": {
+   "title": "Julius Caesar'a suikast",
+   "place": "Roma",
+   "text": "Senatörler, Mart'ın idus gününde diktatör Caesar'ı bıçaklar; ardından gelen iç savaşlar Roma Cumhuriyeti'ne son verir."
+  },
+  "Battle_of_Actium": {
+   "title": "Aktion Muharebesi",
+   "place": "Ambrakia Körfezi, Yunanistan",
+   "text": "Octavianus, Antonius ile Kleopatra'yı denizde yener; MÖ 27'de Augustus adıyla ilk Roma imparatoru olur."
+  },
+  "Battle_of_the_Teutoburg_Forest": {
+   "title": "Teutoburg Ormanı Muharebesi",
+   "place": "Kalkriese, Aşağı Saksonya",
+   "text": "Arminius önderliğindeki Germen kabileleri üç Roma lejyonunu yok ederek Roma'nın Ren'in doğusuna yayılmasını durdurur."
+  },
+  "Hadrian%27s_Wall": {
+   "title": "Hadrian Duvarı'nın inşası",
+   "place": "Kuzey Britanya",
+   "text": "İmparator Hadrianus, Britanya'yı boydan boya kesen tahkimli bir duvar yaptırır; imparatorluk genişlemeden savunulan sınırlara yönelir."
+  },
+  "Edict_of_Milan": {
+   "title": "Milano Fermanı",
+   "place": "Milano",
+   "text": "Konstantinus ve Licinius imparatorluk genelinde dinî hoşgörü tanıyarak Hristiyanlara yönelik zulme son verir."
+  },
+  "Constantinople": {
+   "title": "Konstantinopolis'in kuruluşu",
+   "place": "Byzantion / Konstantinopolis",
+   "text": "Konstantinus, Boğaziçi'ndeki yeni başkentini açar; şehir bin yılı aşkın süre Doğu Roma İmparatorluğu'nun merkezi olacaktır."
+  },
+  "Sack_of_Rome_(410)": {
+   "title": "Roma'nın yağmalanması",
+   "place": "Roma",
+   "text": "Alarik önderliğindeki Vizigotlar Roma'yı yağmalar; şehir 800 yıl içinde ilk kez yabancı bir düşmanın eline düşer."
+  },
+  "Battle_of_the_Catalaunian_Plains": {
+   "title": "Katalaun Ovası Muharebesi",
+   "place": "Champagne, Galya",
+   "text": "Aetius komutasındaki Roma-Vizigot ittifakı, Geç Antik Çağ'ın en büyük muharebelerinden birinde Attila'nın Hunlarını durdurur."
+  },
+  "Fall_of_the_Western_Roman_Empire": {
+   "title": "Batı Roma İmparatorluğu'nun sonu",
+   "place": "Ravenna",
+   "text": "Odoakr, çocuk imparator Romulus Augustulus'u tahttan indirir; bu tarih geleneksel olarak Batı'da Roma egemenliğinin sonu kabul edilir."
+  },
+  "Plague_of_Justinian": {
+   "title": "Justinianus Vebası",
+   "place": "Konstantinopolis",
+   "text": "Bilinen ilk hıyarcıklı veba salgını Akdeniz'i vurur ve Konstantinopolis nüfusunun büyük bir kısmını öldürür."
+  },
+  "Hijrah": {
+   "title": "Hicret",
+   "place": "Mekke'den Medine'ye",
+   "text": "Hz. Muhammed ve ona inananlar Mekke'den Medine'ye göç eder; bu yıl Hicri takvimin başlangıcı olur."
+  },
+  "Battle_of_the_Yarmuk": {
+   "title": "Yermük Muharebesi",
+   "place": "Yermük Nehri, Levant",
+   "text": "Arap Müslüman kuvvetleri Bizans ordusunu yenerek Suriye ve Levant'ı erken dönem halifeliğe açar."
+  },
+  "Umayyad_conquest_of_Hispania": {
+   "title": "Emevilerin İspanya'yı fethi",
+   "place": "Guadalete, Endülüs",
+   "text": "Tarık bin Ziyad Kuzey Afrika'dan geçerek Vizigot kralı Roderik'i yener ve yaklaşık sekiz yüzyıl sürecek Endülüs dönemini başlatır."
+  },
+  "Battle_of_Tours": {
+   "title": "Puvatya Muharebesi",
+   "place": "Tours ile Poitiers arası",
+   "text": "Charles Martel komutasındaki Frank kuvvetleri bir Emevi akıncı ordusunu yenerek Galya'da Karolenj gücünü pekiştirir."
+  },
+  "Charlemagne": {
+   "title": "Şarlman imparator taç giyiyor",
+   "place": "Roma",
+   "text": "Papa III. Leo, Noel günü Frank kralı Şarlman'a imparatorluk tacı giydirerek Batı'da imparatorluk unvanını yeniden canlandırır."
+  },
+  "Treaty_of_Verdun": {
+   "title": "Verdun Antlaşması",
+   "place": "Verdun",
+   "text": "Şarlman'ın torunları Karolenj İmparatorluğu'nu üç krallığa böler; bu bölünme Fransa ve Almanya'nın habercisidir."
+  },
+  "Rurik": {
+   "title": "Rurik Novgorod'da",
+   "place": "Novgorod",
+   "text": "Geçmiş Yılların Hikâyesi'ne göre Varyag Rurik, Novgorod'u yönetmeye davet edilir; bu, Rus devletinin geleneksel başlangıcıdır."
+  },
+  "Otto_the_Great": {
+   "title": "I. Otto imparator taç giyiyor",
+   "place": "Roma",
+   "text": "Alman kralı I. Otto imparator olarak taç giyer; bu olay geleneksel olarak Kutsal Roma İmparatorluğu'nun kuruluşu sayılır."
+  },
+  "Christianization_of_Kievan_Rus%27": {
+   "title": "Kiev Rus'unun Hristiyanlaşması",
+   "place": "Kiev",
+   "text": "Büyük Knez Vladimir, Bizans Ortodoks Hristiyanlığını benimseyerek Doğu Avrupa'nın dinî kültürünü şekillendirir."
+  },
+  "East%E2%80%93West_Schism": {
+   "title": "Doğu-Batı Ayrılığı",
+   "place": "Konstantinopolis ve Roma",
+   "text": "Papalık elçileri ile Konstantinopolis Patriği'nin karşılıklı aforozları, Katolik ve Ortodoks kiliselerinin ayrılığını resmîleştirir."
+  },
+  "Battle_of_Hastings": {
+   "title": "Hastings Muharebesi",
+   "place": "Hastings, İngiltere",
+   "text": "Normandiyalı William, II. Harold'u yenerek İngiltere'nin Norman fethini başlatır."
+  },
+  "Battle_of_Manzikert": {
+   "title": "Malazgirt Muharebesi",
+   "place": "Malazgirt, Anadolu",
+   "text": "Selçuklu Türkleri Bizans imparatorunu yenip esir alır ve Anadolu'yu Türk yerleşimine açar."
+  },
+  "Siege_of_Jerusalem_(1099)": {
+   "title": "Haçlılar Kudüs'ü alıyor",
+   "place": "Kudüs",
+   "text": "Birinci Haçlı Seferi, bir kuşatma ve katliamın ardından Kudüs'ü ele geçirir ve Haçlı Kudüs Krallığı'nı kurar."
+  },
+  "Sack_of_Constantinople": {
+   "title": "Konstantinopolis'in yağmalanması",
+   "place": "Konstantinopolis",
+   "text": "Dördüncü Haçlı Seferi Konstantinopolis'e yönelerek şehri yağmalar ve Bizans İmparatorluğu'nu ağır biçimde zayıflatır."
+  },
+  "Magna_Carta": {
+   "title": "Magna Carta",
+   "place": "Runnymede, İngiltere",
+   "text": "İsyancı baronlar, Kral John'u kraliyet gücünü sınırlayan bir fermanı mühürlemeye zorlar; belge sonradan anayasal yönetimin mihenk taşı olur."
+  },
+  "Siege_of_Kiev_(1240)": {
+   "title": "Moğollar Kiev'i yağmalıyor",
+   "place": "Kiev",
+   "text": "Batu Han'ın Moğol ordusu Rus istilası sırasında Kiev'i yerle bir eder ve Altın Orda dönemini başlatır."
+  },
+  "Siege_of_Baghdad_(1258)": {
+   "title": "Moğollar Bağdat'ı yağmalıyor",
+   "place": "Bağdat",
+   "text": "Hülagü'nün ordusu Bağdat'ı alır ve halifeyi öldürerek Abbasi Halifeliği'nin şehirden yönetimine son verir."
+  },
+  "Black_Death": {
+   "title": "Kara Ölüm Avrupa'da",
+   "place": "Messina, Sicilya",
+   "text": "Veba, Karadeniz'den gelen Ceneviz gemileriyle ulaşır; beş yıl içinde Avrupa nüfusunun belki üçte birini ya da daha fazlasını öldürür."
+  },
+  "Fall_of_Constantinople": {
+   "title": "İstanbul'un Fethi",
+   "place": "Konstantinopolis",
+   "text": "Sultan II. Mehmed şehri fethederek Bizans İmparatorluğu'na son verir; şehir Osmanlı başkenti olur."
+  },
+  "Fall_of_Granada": {
+   "title": "Gırnata'nın düşüşü",
+   "place": "Gırnata",
+   "text": "Kastilya ve Aragon, İber Yarımadası'ndaki son Müslüman devleti ele geçirir; aynı yıl Kolomb İspanyol tacı adına batıya yelken açar."
+  },
+  "Ninety-five_Theses": {
+   "title": "Luther'in Doksan Beş Tezi",
+   "place": "Wittenberg",
+   "text": "Martin Luther endüljans satışına karşı çıkarak Protestan Reformu'nu ateşler."
+  },
+  "Siege_of_Vienna_(1529)": {
+   "title": "Birinci Viyana Kuşatması",
+   "place": "Viyana",
+   "text": "Kanuni Sultan Süleyman'ın Osmanlı ordusu Viyana'yı kuşatır ancak geri çekilir; bu, bir yüzyıl boyunca Osmanlı'nın Orta Avrupa'daki ilerleyişinin sınırı olur."
+  },
+  "Battle_of_Lepanto": {
+   "title": "İnebahtı Deniz Muharebesi",
+   "place": "Patras Körfezi",
+   "text": "Kutsal İttifak'ın kadırgaları, kürekli savaş gemileri çağının en büyük deniz muharebesinde Osmanlı donanmasını yener."
+  },
+  "Spanish_Armada": {
+   "title": "İspanyol Armadası",
+   "place": "Manş Denizi",
+   "text": "II. Felipe'nin istila filosu Gravelines açıklarında püskürtülür ve fırtınalarla dağılır; Elizabeth dönemi İngiltere'si güvenceye alınır."
+  },
+  "Thirty_Years%27_War": {
+   "title": "Otuz Yıl Savaşları başlıyor",
+   "place": "Prag",
+   "text": "Prag'da pencereden atma olayı, Alman topraklarını harap eden ve Avrupa'nın büyük kısmını içine çeken bir savaşı tetikler."
+  },
+  "Peace_of_Westphalia": {
+   "title": "Vestfalya Barışı",
+   "place": "Münster ve Osnabrück",
+   "text": "Antlaşmalar Otuz Yıl ve Seksen Yıl savaşlarını sona erdirir; çoğu zaman modern egemen devletler sisteminin kökeni olarak anılır."
+  },
+  "Battle_of_Vienna": {
+   "title": "İkinci Viyana Kuşatması",
+   "place": "Viyana",
+   "text": "III. Jan Sobieski komutasındaki yardım ordusu Osmanlı kuşatmasını kırar ve Habsburgların Macaristan'ı geri alışını başlatır."
+  },
+  "Saint_Petersburg": {
+   "title": "St. Petersburg'un kuruluşu",
+   "place": "St. Petersburg",
+   "text": "Büyük Petro, Baltık kıyısında Rusya'nın \"Avrupa'ya açılan penceresi\" olarak yeni bir başkent kurar."
+  },
+  "French_Revolution": {
+   "title": "Fransız Devrimi",
+   "place": "Paris",
+   "text": "14 Temmuz'da Bastille'in basılması, Fransa'da eski rejimi deviren devrimin simgesi olur."
+  },
+  "Battle_of_Austerlitz": {
+   "title": "Austerlitz Muharebesi",
+   "place": "Slavkov u Brna, Moravya",
+   "text": "Napolyon Rusya ve Avusturya'yı yener; ertesi yıl Kutsal Roma İmparatorluğu dağıtılır."
+  },
+  "French_invasion_of_Russia": {
+   "title": "Napolyon'un Rusya seferi",
+   "place": "Moskova",
+   "text": "Grande Armée yanan Moskova'ya ulaşır ancak kış ricatında yok olur; Napolyon'un gücü kırılır."
+  },
+  "Congress_of_Vienna": {
+   "title": "Waterloo ve Viyana Kongresi",
+   "place": "Waterloo",
+   "text": "Napolyon'un Waterloo'daki son yenilgisi, Avrupa haritasını bir kuşak boyunca yeniden çizen Viyana düzenlemesiyle aynı zamana denk gelir."
+  },
+  "Revolutions_of_1848": {
+   "title": "1848 Devrimleri",
+   "place": "Paris, Viyana, Berlin ve ötesi",
+   "text": "Liberal ve ulusal ayaklanma dalgası Avrupa'ya yayılır; çoğu bastırılır, ancak Avusturya'da serflik kaldırılır."
+  },
+  "Suez_Canal": {
+   "title": "Süveyş Kanalı açılıyor",
+   "place": "Süveyş Kıstağı",
+   "text": "Kanal Akdeniz'i Kızıldeniz'e bağlayarak Avrupa ile Asya arasındaki ticareti dönüştürür."
+  },
+  "Proclamation_of_the_German_Empire": {
+   "title": "Alman İmparatorluğu ilan ediliyor",
+   "place": "Versay",
+   "text": "Fransa'ya karşı kazanılan zaferin ardından I. Wilhelm, Aynalı Salon'da Alman İmparatoru ilan edilir ve Alman birliği tamamlanır."
+  },
+  "Congress_of_Berlin": {
+   "title": "Berlin Kongresi",
+   "place": "Berlin",
+   "text": "Büyük güçler Osmanlı-Rus Savaşı'nın (93 Harbi) ardından Balkan düzenlemesini yeniden ele alır; Romanya, Sırbistan ve Karadağ bağımsız olur."
+  },
+  "Assassination_of_Archduke_Franz_Ferdinand": {
+   "title": "Saraybosna suikastı",
+   "place": "Saraybosna",
+   "text": "Arşidük Franz Ferdinand'ın öldürülmesi Temmuz Krizi'ni ve Birinci Dünya Savaşı'nı başlatır."
+  },
+  "Battle_of_Verdun": {
+   "title": "Verdun Muharebesi",
+   "place": "Verdun",
+   "text": "Fransa ile Almanya arasındaki on aylık yıpratma muharebesi Batı Cephesi'nin simgesi olur."
+  },
+  "Russian_Revolution": {
+   "title": "Rus Devrimi",
+   "place": "Petrograd",
+   "text": "Çar Şubat'ta tahttan çekilir, Bolşevikler Ekim'de iktidarı ele geçirir ve bu süreç Sovyet devletine yol açar."
+  },
+  "Treaty_of_Versailles": {
+   "title": "Versay Antlaşması",
+   "place": "Versay",
+   "text": "Almanya ile yapılan barış antlaşması, diğer Paris antlaşmalarıyla birlikte imparatorlukları dağıtır ve Orta Avrupa'da yeni devletler kurar."
+  },
+  "Proclamation_of_the_Republic_of_Turkey": {
+   "title": "Cumhuriyetin ilanı",
+   "place": "Ankara",
+   "text": "Osmanlı İmparatorluğu'nun çöküşünün ardından Mustafa Kemal, başkenti Ankara olan Türkiye Cumhuriyeti'ni ilan eder."
+  },
+  "Invasion_of_Poland": {
+   "title": "İkinci Dünya Savaşı başlıyor",
+   "place": "Westerplatte, Gdańsk",
+   "text": "Almanya 1 Eylül'de Polonya'yı işgal eder; İngiltere ve Fransa iki gün sonra savaş ilan eder."
+  },
+  "Battle_of_Stalingrad": {
+   "title": "Stalingrad Muharebesi",
+   "place": "Stalingrad (Volgograd)",
+   "text": "Sovyetlerin Alman 6. Ordusu'nu kuşatıp yok etmesi, Avrupa'daki savaşın dönüm noktası olur."
+  },
+  "Normandy_landings": {
+   "title": "Normandiya Çıkarması",
+   "place": "Normandiya",
+   "text": "Müttefik kuvvetler 6 Haziran'da Normandiya'ya çıkarak Nazi Almanyası'na karşı bir batı cephesi açar."
+  },
+  "Victory_in_Europe_Day": {
+   "title": "Avrupa'da savaşın sonu",
+   "place": "Berlin",
+   "text": "Mayıs'ta Berlin düşer ve Almanya kayıtsız şartsız teslim olur; Avrupa işgal bölgelerine ayrılır."
+  },
+  "Treaty_of_Rome": {
+   "title": "Roma Antlaşması",
+   "place": "Roma",
+   "text": "Altı ülke, Avrupa Birliği'nin öncülü olan Avrupa Ekonomik Topluluğu'nu kurar."
+  },
+  "Berlin_Wall": {
+   "title": "Berlin Duvarı inşa ediliyor",
+   "place": "Berlin",
+   "text": "Doğu Almanya bir gecede Batı Berlin'in çevresini kapatır; duvar Soğuk Savaş bölünmüşlüğünün simgesi olur."
+  },
+  "Fall_of_the_Berlin_Wall": {
+   "title": "Berlin Duvarı'nın yıkılışı",
+   "place": "Berlin",
+   "text": "Doğu Avrupa'daki barışçıl devrimler ortasında sınır kapıları 9 Kasım'da açılır; Almanya 1990'da yeniden birleşir."
+  },
+  "Dissolution_of_the_Soviet_Union": {
+   "title": "Sovyetler Birliği'nin dağılışı",
+   "place": "Moskova",
+   "text": "SSCB on beş bağımsız devlete bölünür ve Doğu Avrupa ile Kafkasya'nın haritası yeniden çizilir."
+  },
+  "Maastricht_Treaty": {
+   "title": "Avrupa Birliği kuruluyor",
+   "place": "Maastricht",
+   "text": "Maastricht Antlaşması yürürlüğe girer; AB'yi kurar ve avronun temelini atar."
+  },
+  "2004_enlargement_of_the_European_Union": {
+   "title": "AB'nin doğuya genişlemesi",
+   "place": "Brüksel",
+   "text": "Çoğu eskiden Sovyet nüfuz alanında bulunan on ülke, tek seferdeki en büyük genişlemeyle Avrupa Birliği'ne katılır."
+  }
+ }
+}

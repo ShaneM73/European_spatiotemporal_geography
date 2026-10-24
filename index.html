@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>European Spatiotemporal Geography</title>
+  <meta name="description" content="A 3D space-time cube of Europe, North Africa and the Near East: topographic terrain with political boundaries and historic events from 500 BCE to 2010, stacked along a time axis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="scene"></div>
+  <div id="labels" aria-hidden="true"></div>
+
+  <aside id="panel">
+    <header>
+      <p class="eyebrow" data-i18n="eyebrow">Space–time atlas · 500 BCE – 2010</p>
+      <h1 data-i18n="title">European Spatiotemporal Geography</h1>
+      <label class="lang-pick">
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        <select id="lang" data-i18n-aria="language"></select>
+      </label>
+      <button id="panelToggle" class="icon-btn" aria-label="Toggle controls" data-i18n-aria="toggleControls" aria-expanded="true">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div class="now">
+      <div id="year" class="year">—</div>
+      <div id="period" class="period"></div>
+      <div id="span" class="span"></div>
+    </div>
+
+    <section id="eventCard" class="card" hidden>
+      <div class="ev-top">
+        <span class="ev-cat"><i id="evDot"></i><span id="evCat"></span></span>
+        <span class="ev-nav">
+          <button id="evPrev" class="icon-btn" aria-label="Previous event" data-i18n-aria="prevEvent">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button id="evNext" class="icon-btn" aria-label="Next event" data-i18n-aria="nextEvent">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button id="evClose" class="icon-btn" aria-label="Close event" data-i18n-aria="close">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </span>
+      </div>
+      <h2 id="evTitle"></h2>
+      <div id="evWhen" class="ev-when"></div>
+      <p id="evText"></p>
+      <div class="ev-actions">
+        <button id="evJump" class="btn"></button>
+        <a id="evLink" class="btn ghost" target="_blank" rel="noopener" data-i18n="wikipedia">Wikipedia ↗</a>
+      </div>
+    </section>
+
+    <section id="selection" hidden>
+      <div class="sel-head">
+        <span class="swatch" id="selSwatch"></span>
+        <div>
+          <div id="selName" class="sel-name"></div>
+          <div id="selMeta" class="sel-meta"></div>
+        </div>
+        <button id="selClose" class="icon-btn" aria-label="Clear selection" data-i18n-aria="clearSelection">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="sel-label" data-i18n="presentIn">Present in snapshots</div>
+      <div id="selYears" class="chips"></div>
+    </section>
+
+    <section class="controls">
+      <div class="row">
+        <span data-i18n="view">View</span>
+        <div class="seg" id="views">
+          <button data-view="cube" class="on" data-i18n="viewCube">Cube</button>
+          <button data-view="map" data-i18n="viewMap">Map</button>
+          <button data-view="profile" data-i18n="viewProfile">Profile</button>
+        </div>
+      </div>
+      <div class="row">
+        <span data-i18n="timeAxis">Time axis</span>
+        <div class="seg" id="scale">
+          <button data-scale="linear" class="on" data-i18n="proportional">Proportional</button>
+          <button data-scale="even" data-i18n="even">Even</button>
+        </div>
+      </div>
+      <label class="row">
+        <span><span data-i18n="relief">Relief</span> <em id="reliefVal">×30</em></span>
+        <input id="relief" type="range" min="0" max="80" step="1" value="30">
+      </label>
+      <label class="row">
+        <span data-i18n="timeStack">Time stack</span>
+        <input id="stack" type="checkbox" class="switch" checked>
+      </label>
+      <label class="row">
+        <span data-i18n="labels">Labels</span>
+        <input id="labelsToggle" type="checkbox" class="switch" checked>
+      </label>
+      <label class="row">
+        <span data-i18n="events">Historic events</span>
+        <input id="eventsToggle" type="checkbox" class="switch" checked>
+      </label>
+      <div id="legend" class="legend"></div>
+      <div class="row">
+        <span data-i18n="theme">Theme</span>
+        <div class="seg" id="theme">
+          <button data-theme="light" data-i18n="light">Light</button>
+          <button data-theme="dark" data-i18n="dark">Dark</button>
+        </div>
+      </div>
+    </section>
+
+    <p class="hint" data-i18n="hint">Drag to orbit · scroll to zoom · click a polity to trace it through time · click a ◆ event for its story · ← → step · space plays</p>
+
+    <footer id="footerText">
+      Boundaries: <a href="https://github.com/aourednik/historical-basemaps" target="_blank" rel="noopener">historical-basemaps</a> (A. Ourednik, GPL-3.0).
+      Terrain: <a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">AWS Terrain Tiles</a> (SRTM, GMTED, ETOPO1 and others).
+      Event summaries link to Wikipedia. Historical borders are approximate.
+    </footer>
+  </aside>
+
+  <div id="tooltip" hidden></div>
+
+  <div id="timeline">
+    <button id="play" class="play" aria-label="Play" data-i18n-aria="play">
+      <svg id="playIcon" viewBox="0 0 24 24" width="18" height="18"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+    </button>
+    <div id="track" role="slider" tabindex="0" aria-label="Snapshot year" data-i18n-aria="snapshotYear">
+      <div id="rail"></div>
+      <div id="ticks"></div>
+      <div id="thumb"><span id="thumbLabel"></span></div>
+    </div>
+  </div>
+
+  <div id="loading"><div class="spinner"></div><span id="loadingText">Loading atlas…</span></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

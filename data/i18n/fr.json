@@ -1,0 +1,416 @@
+{
+ "lang": "fr",
+ "name": "Français",
+ "dir": "ltr",
+ "ui": {
+  "eyebrow": "Atlas espace-temps · 500 av. J.-C. – 2010",
+  "title": "Géographie spatio-temporelle de l'Europe",
+  "language": "Langue",
+  "view": "Vue",
+  "viewCube": "Cube",
+  "viewMap": "Carte",
+  "viewProfile": "Profil",
+  "timeAxis": "Axe du temps",
+  "proportional": "Proportionnel",
+  "even": "Régulier",
+  "relief": "Relief",
+  "timeStack": "Pile temporelle",
+  "labels": "Étiquettes",
+  "events": "Événements historiques",
+  "theme": "Thème",
+  "light": "Clair",
+  "dark": "Sombre",
+  "hint": "Glisser pour pivoter · molette pour zoomer · cliquer sur un État pour le suivre dans le temps · cliquer sur un événement ◆ pour son histoire · ← → avancer · espace pour lire",
+  "footer": "Frontières : {basemaps} (A. Ourednik, GPL-3.0). Relief : {terrain} (SRTM, GMTED, ETOPO1 et autres). Les résumés d'événements renvoient à Wikipédia. Les frontières historiques sont approximatives.",
+  "polityNote": "Les noms des États sont affichés tels qu'ils figurent dans les données sources (en anglais).",
+  "loading": "Chargement de l'atlas…",
+  "errorFile": "Veuillez ouvrir cette page via un serveur web (par ex. GitHub Pages ou `python -m http.server`).",
+  "errorLoad": "Impossible de charger l'atlas : {msg}",
+  "snapshotUntil": "Instantané de {n} États · affiché jusqu'en {year}",
+  "snapshotLatest": "Instantané de {n} États · le plus récent",
+  "presentIn": "Présent dans les instantanés",
+  "under": "sous {name}",
+  "partOf": "partie de {name}",
+  "inView": "{area} (dans la vue)",
+  "notPresent": "absent en {year}",
+  "bordersPrecision": "frontières {precision}",
+  "precision1": "approximatives",
+  "precision2": "assez précises",
+  "precision3": "précises",
+  "bordersOf": "Frontières de {year}",
+  "wikipedia": "Wikipédia ↗",
+  "yearCE": "{y} apr. J.-C.",
+  "yearBCE": "{y} av. J.-C.",
+  "shortCE": "{y}",
+  "shortBCE": "{y} av. J.-C.",
+  "km2": "{n} km²",
+  "play": "Lecture",
+  "pause": "Pause",
+  "prevEvent": "Événement précédent",
+  "nextEvent": "Événement suivant",
+  "close": "Fermer",
+  "clearSelection": "Effacer la sélection",
+  "toggleControls": "Afficher/masquer les commandes",
+  "snapshotYear": "Année de l'instantané"
+ },
+ "periods": {
+  "antiquity": "Antiquité classique",
+  "lateAntiquity": "Antiquité tardive",
+  "earlyMiddleAges": "Haut Moyen Âge",
+  "highMiddleAges": "Moyen Âge central",
+  "lateMiddleAges": "Bas Moyen Âge",
+  "earlyModern": "Époque moderne",
+  "long19th": "Long XIXe siècle",
+  "worldWars": "Guerres mondiales et entre-deux-guerres",
+  "coldWar": "Guerre froide",
+  "contemporary": "Europe contemporaine"
+ },
+ "categories": {
+  "conflict": "Batailles et guerres",
+  "politics": "États et traités",
+  "culture": "Religion et culture",
+  "society": "Société, économie et catastrophes"
+ },
+ "events": {
+  "Battle_of_Marathon": {
+   "title": "Bataille de Marathon",
+   "place": "Marathon, Attique",
+   "text": "Les hoplites athéniens et platéens repoussent la première invasion perse de la Grèce, moment fondateur de l'assurance athénienne."
+  },
+  "Battle_of_Salamis": {
+   "title": "Bataille de Salamine",
+   "place": "Détroit de Salamine",
+   "text": "La flotte grecque alliée détruit une grande partie de la marine de Xerxès dans le détroit de Salamine, repoussant la seconde invasion perse."
+  },
+  "Peloponnesian_War": {
+   "title": "Début de la guerre du Péloponnèse",
+   "place": "Athènes et Sparte",
+   "text": "Une guerre de 27 ans entre les alliances athénienne et spartiate épuise la Grèce classique et s'achève par la défaite d'Athènes en 404 av. J.-C."
+  },
+  "Battle_of_Gaugamela": {
+   "title": "Bataille de Gaugamèles",
+   "place": "Près d'Erbil, Mésopotamie",
+   "text": "Alexandre le Grand vainc Darius III, abattant l'Empire perse achéménide et ouvrant l'époque hellénistique."
+  },
+  "Death_of_Alexander_the_Great": {
+   "title": "Mort d'Alexandre",
+   "place": "Babylone",
+   "text": "Alexandre meurt à Babylone à 32 ans ; ses généraux (les diadoques) se partagent son empire en royaumes hellénistiques rivaux."
+  },
+  "Hannibal%27s_crossing_of_the_Alps": {
+   "title": "Hannibal franchit les Alpes",
+   "place": "Alpes occidentales",
+   "text": "Pendant la deuxième guerre punique, le Carthaginois Hannibal fait passer les Alpes à une armée avec éléphants de guerre pour envahir l'Italie romaine."
+  },
+  "Siege_of_Carthage_(Third_Punic_War)": {
+   "title": "Destruction de Carthage",
+   "place": "Carthage",
+   "text": "Rome rase Carthage à la fin de la troisième guerre punique (et pille Corinthe la même année), devenant maîtresse de la Méditerranée."
+  },
+  "Assassination_of_Julius_Caesar": {
+   "title": "Assassinat de Jules César",
+   "place": "Rome",
+   "text": "Des sénateurs poignardent le dictateur César aux ides de mars ; les guerres civiles qui suivent mettent fin à la République romaine."
+  },
+  "Battle_of_Actium": {
+   "title": "Bataille d'Actium",
+   "place": "Golfe d'Ambracie, Grèce",
+   "text": "Octavien vainc Antoine et Cléopâtre sur mer ; sous le nom d'Auguste, il devient le premier empereur romain en 27 av. J.-C."
+  },
+  "Battle_of_the_Teutoburg_Forest": {
+   "title": "Bataille de Teutobourg",
+   "place": "Kalkriese, Basse-Saxe",
+   "text": "Des tribus germaniques menées par Arminius anéantissent trois légions romaines, arrêtant l'expansion romaine à l'est du Rhin."
+  },
+  "Hadrian%27s_Wall": {
+   "title": "Début du mur d'Hadrien",
+   "place": "Nord de la Bretagne",
+   "text": "L'empereur Hadrien fait construire un mur fortifié à travers la Bretagne, signe du passage de l'empire de l'expansion à la défense des frontières."
+  },
+  "Edict_of_Milan": {
+   "title": "Édit de Milan",
+   "place": "Milan",
+   "text": "Constantin et Licinius accordent la tolérance religieuse dans tout l'empire, mettant fin aux persécutions contre les chrétiens."
+  },
+  "Constantinople": {
+   "title": "Fondation de Constantinople",
+   "place": "Byzance / Constantinople",
+   "text": "Constantin inaugure sa nouvelle capitale sur le Bosphore ; elle sera le siège de l'Empire romain d'Orient pendant plus de mille ans."
+  },
+  "Sack_of_Rome_(410)": {
+   "title": "Sac de Rome",
+   "place": "Rome",
+   "text": "Les Wisigoths d'Alaric pillent Rome : pour la première fois en 800 ans, la ville tombe aux mains d'un ennemi étranger."
+  },
+  "Battle_of_the_Catalaunian_Plains": {
+   "title": "Bataille des champs Catalauniques",
+   "place": "Champagne, Gaule",
+   "text": "Une coalition romano-wisigothique menée par Aetius arrête les Huns d'Attila lors de l'une des plus grandes batailles de l'Antiquité tardive."
+  },
+  "Fall_of_the_Western_Roman_Empire": {
+   "title": "Fin de l'Empire romain d'Occident",
+   "place": "Ravenne",
+   "text": "Odoacre dépose le jeune empereur Romulus Augustule ; cette date marque par convention la fin de la domination romaine en Occident."
+  },
+  "Plague_of_Justinian": {
+   "title": "Peste de Justinien",
+   "place": "Constantinople",
+   "text": "La première pandémie connue de peste bubonique frappe la Méditerranée et tue une grande partie de la population de Constantinople."
+  },
+  "Hijrah": {
+   "title": "L'Hégire",
+   "place": "De La Mecque à Médine",
+   "text": "Mahomet et ses fidèles émigrent de La Mecque à Médine ; cette année devient le point de départ du calendrier musulman."
+  },
+  "Battle_of_the_Yarmuk": {
+   "title": "Bataille du Yarmouk",
+   "place": "Fleuve Yarmouk, Levant",
+   "text": "Les armées arabes musulmanes battent l'armée byzantine, ouvrant la Syrie et le Levant au califat naissant."
+  },
+  "Umayyad_conquest_of_Hispania": {
+   "title": "Conquête omeyyade de l'Hispanie",
+   "place": "Guadalete, Andalousie",
+   "text": "Tariq ibn Ziyad traverse depuis l'Afrique du Nord et bat le roi wisigoth Rodéric, ouvrant près de huit siècles d'al-Andalus."
+  },
+  "Battle_of_Tours": {
+   "title": "Bataille de Poitiers",
+   "place": "Entre Tours et Poitiers",
+   "text": "Les Francs de Charles Martel battent une armée omeyyade de razzia, renforçant le pouvoir carolingien en Gaule."
+  },
+  "Charlemagne": {
+   "title": "Charlemagne couronné empereur",
+   "place": "Rome",
+   "text": "Le pape Léon III couronne empereur le roi franc Charlemagne le jour de Noël, faisant renaître le titre impérial en Occident."
+  },
+  "Treaty_of_Verdun": {
+   "title": "Traité de Verdun",
+   "place": "Verdun",
+   "text": "Les petits-fils de Charlemagne partagent l'Empire carolingien en trois royaumes, préfigurant la France et l'Allemagne."
+  },
+  "Rurik": {
+   "title": "Riourik à Novgorod",
+   "place": "Novgorod",
+   "text": "Selon la Chronique des temps passés, le Varègue Riourik est appelé à régner sur Novgorod, début traditionnel de l'État de la Rus'."
+  },
+  "Otto_the_Great": {
+   "title": "Otton Ier couronné empereur",
+   "place": "Rome",
+   "text": "Le roi de Germanie Otton Ier est couronné empereur, ce qui marque par convention la fondation du Saint-Empire romain germanique."
+  },
+  "Christianization_of_Kievan_Rus%27": {
+   "title": "Christianisation de la Rus' de Kiev",
+   "place": "Kyiv",
+   "text": "Le grand-prince Vladimir adopte le christianisme orthodoxe byzantin, façonnant la culture religieuse de l'Europe de l'Est."
+  },
+  "East%E2%80%93West_Schism": {
+   "title": "Schisme de 1054",
+   "place": "Constantinople et Rome",
+   "text": "Les excommunications mutuelles entre les légats du pape et le patriarche de Constantinople consacrent la séparation des Églises catholique et orthodoxe."
+  },
+  "Battle_of_Hastings": {
+   "title": "Bataille d'Hastings",
+   "place": "Hastings, Angleterre",
+   "text": "Guillaume de Normandie bat Harold II, ouvrant la conquête normande de l'Angleterre."
+  },
+  "Battle_of_Manzikert": {
+   "title": "Bataille de Manzikert",
+   "place": "Malazgirt, Anatolie",
+   "text": "Les Turcs seldjoukides battent et capturent l'empereur byzantin, ouvrant l'Anatolie à l'installation turque."
+  },
+  "Siege_of_Jerusalem_(1099)": {
+   "title": "Prise de Jérusalem",
+   "place": "Jérusalem",
+   "text": "La première croisade s'empare de Jérusalem après un siège et un massacre, fondant le royaume croisé de Jérusalem."
+  },
+  "Sack_of_Constantinople": {
+   "title": "Sac de Constantinople",
+   "place": "Constantinople",
+   "text": "La quatrième croisade se retourne contre Constantinople et la pille, affaiblissant gravement l'Empire byzantin."
+  },
+  "Magna_Carta": {
+   "title": "Magna Carta",
+   "place": "Runnymede, Angleterre",
+   "text": "Des barons révoltés contraignent le roi Jean sans Terre à sceller une charte limitant le pouvoir royal, future référence du gouvernement constitutionnel."
+  },
+  "Siege_of_Kiev_(1240)": {
+   "title": "Les Mongols prennent Kyiv",
+   "place": "Kyiv",
+   "text": "L'armée mongole de Batu détruit Kyiv lors de l'invasion de la Rus', ouvrant l'ère de la Horde d'or."
+  },
+  "Siege_of_Baghdad_(1258)": {
+   "title": "Les Mongols prennent Bagdad",
+   "place": "Bagdad",
+   "text": "L'armée de Houlagou prend Bagdad et tue le calife, mettant fin au règne du califat abbasside depuis la ville."
+  },
+  "Black_Death": {
+   "title": "La peste noire atteint l'Europe",
+   "place": "Messine, Sicile",
+   "text": "La peste arrive de la mer Noire à bord de navires génois ; en cinq ans, elle tue peut-être un tiers ou plus de la population européenne."
+  },
+  "Fall_of_Constantinople": {
+   "title": "Chute de Constantinople",
+   "place": "Constantinople",
+   "text": "Le sultan Mehmed II prend la ville, mettant fin à l'Empire byzantin ; elle devient la capitale ottomane."
+  },
+  "Fall_of_Granada": {
+   "title": "Chute de Grenade",
+   "place": "Grenade",
+   "text": "La Castille et l'Aragon prennent le dernier État musulman de la péninsule Ibérique ; la même année, Colomb part vers l'ouest pour la Couronne espagnole."
+  },
+  "Ninety-five_Theses": {
+   "title": "Les 95 thèses de Luther",
+   "place": "Wittenberg",
+   "text": "Martin Luther conteste la vente des indulgences, déclenchant la Réforme protestante."
+  },
+  "Siege_of_Vienna_(1529)": {
+   "title": "Premier siège de Vienne",
+   "place": "Vienne",
+   "text": "L'armée ottomane de Soliman le Magnifique assiège Vienne puis se retire, marquant pour un siècle la limite de l'avancée ottomane en Europe centrale."
+  },
+  "Battle_of_Lepanto": {
+   "title": "Bataille de Lépante",
+   "place": "Golfe de Patras",
+   "text": "Les galères de la Sainte Ligue battent la flotte ottomane lors de la plus grande bataille navale de l'âge des navires à rames."
+  },
+  "Spanish_Armada": {
+   "title": "Invincible Armada",
+   "place": "Manche",
+   "text": "La flotte d'invasion de Philippe II est battue au large de Gravelines et dispersée par les tempêtes, préservant l'Angleterre élisabéthaine."
+  },
+  "Thirty_Years%27_War": {
+   "title": "Début de la guerre de Trente Ans",
+   "place": "Prague",
+   "text": "La défenestration de Prague déclenche une guerre qui dévaste les terres allemandes et entraîne la plupart des pays d'Europe."
+  },
+  "Peace_of_Westphalia": {
+   "title": "Traités de Westphalie",
+   "place": "Münster et Osnabrück",
+   "text": "Ces traités mettent fin à la guerre de Trente Ans et à la guerre de Quatre-Vingts Ans ; on y voit souvent l'origine du système moderne des États souverains."
+  },
+  "Battle_of_Vienna": {
+   "title": "Bataille de Vienne",
+   "place": "Vienne",
+   "text": "Une armée de secours menée par Jean III Sobieski brise le siège ottoman, ouvrant la reconquête de la Hongrie par les Habsbourg."
+  },
+  "Saint_Petersburg": {
+   "title": "Fondation de Saint-Pétersbourg",
+   "place": "Saint-Pétersbourg",
+   "text": "Pierre le Grand fonde une nouvelle capitale sur la Baltique, « fenêtre sur l'Europe » de la Russie."
+  },
+  "French_Revolution": {
+   "title": "Révolution française",
+   "place": "Paris",
+   "text": "La prise de la Bastille, le 14 juillet, devient le symbole d'une révolution qui renverse l'Ancien Régime en France."
+  },
+  "Battle_of_Austerlitz": {
+   "title": "Bataille d'Austerlitz",
+   "place": "Slavkov u Brna, Moravie",
+   "text": "Napoléon bat la Russie et l'Autriche ; le Saint-Empire romain germanique est dissous l'année suivante."
+  },
+  "French_invasion_of_Russia": {
+   "title": "Campagne de Russie",
+   "place": "Moscou",
+   "text": "La Grande Armée atteint Moscou en flammes mais est anéantie lors de la retraite hivernale, ce qui brise la puissance de Napoléon."
+  },
+  "Congress_of_Vienna": {
+   "title": "Waterloo et congrès de Vienne",
+   "place": "Waterloo",
+   "text": "La défaite finale de Napoléon à Waterloo coïncide avec le règlement de Vienne, qui redessine la carte de l'Europe pour une génération."
+  },
+  "Revolutions_of_1848": {
+   "title": "Révolutions de 1848",
+   "place": "Paris, Vienne, Berlin et ailleurs",
+   "text": "Une vague de soulèvements libéraux et nationaux gagne l'Europe ; la plupart sont réprimés, mais le servage est aboli en Autriche."
+  },
+  "Suez_Canal": {
+   "title": "Ouverture du canal de Suez",
+   "place": "Isthme de Suez",
+   "text": "Le canal relie la Méditerranée à la mer Rouge, transformant le commerce entre l'Europe et l'Asie."
+  },
+  "Proclamation_of_the_German_Empire": {
+   "title": "Proclamation de l'Empire allemand",
+   "place": "Versailles",
+   "text": "Après la victoire sur la France, Guillaume Ier est proclamé empereur allemand dans la galerie des Glaces, achevant l'unification allemande."
+  },
+  "Congress_of_Berlin": {
+   "title": "Congrès de Berlin",
+   "place": "Berlin",
+   "text": "Les grandes puissances révisent le règlement balkanique après la guerre russo-turque ; la Roumanie, la Serbie et le Monténégro deviennent indépendants."
+  },
+  "Assassination_of_Archduke_Franz_Ferdinand": {
+   "title": "Attentat de Sarajevo",
+   "place": "Sarajevo",
+   "text": "L'assassinat de l'archiduc François-Ferdinand déclenche la crise de juillet et la Première Guerre mondiale."
+  },
+  "Battle_of_Verdun": {
+   "title": "Bataille de Verdun",
+   "place": "Verdun",
+   "text": "Une bataille d'usure de dix mois entre la France et l'Allemagne devient le symbole du front de l'Ouest."
+  },
+  "Russian_Revolution": {
+   "title": "Révolution russe",
+   "place": "Petrograd",
+   "text": "Le tsar abdique en février et les bolcheviks prennent le pouvoir en octobre, ce qui conduit à l'État soviétique."
+  },
+  "Treaty_of_Versailles": {
+   "title": "Traité de Versailles",
+   "place": "Versailles",
+   "text": "La paix avec l'Allemagne, avec les autres traités de Paris, démantèle des empires et crée de nouveaux États en Europe centrale."
+  },
+  "Proclamation_of_the_Republic_of_Turkey": {
+   "title": "Proclamation de la République turque",
+   "place": "Ankara",
+   "text": "Après l'effondrement de l'Empire ottoman, Mustafa Kemal proclame la République de Turquie, avec Ankara pour capitale."
+  },
+  "Invasion_of_Poland": {
+   "title": "Début de la Seconde Guerre mondiale",
+   "place": "Westerplatte, Gdańsk",
+   "text": "L'Allemagne envahit la Pologne le 1er septembre ; le Royaume-Uni et la France lui déclarent la guerre deux jours plus tard."
+  },
+  "Battle_of_Stalingrad": {
+   "title": "Bataille de Stalingrad",
+   "place": "Stalingrad (Volgograd)",
+   "text": "L'encerclement et la destruction de la 6e armée allemande par les Soviétiques marquent un tournant de la guerre en Europe."
+  },
+  "Normandy_landings": {
+   "title": "Débarquement de Normandie",
+   "place": "Normandie",
+   "text": "Les forces alliées débarquent en Normandie le 6 juin, ouvrant un front occidental contre l'Allemagne nazie."
+  },
+  "Victory_in_Europe_Day": {
+   "title": "Fin de la guerre en Europe",
+   "place": "Berlin",
+   "text": "Berlin tombe et l'Allemagne capitule sans condition en mai ; l'Europe est divisée en zones d'occupation."
+  },
+  "Treaty_of_Rome": {
+   "title": "Traité de Rome",
+   "place": "Rome",
+   "text": "Six pays fondent la Communauté économique européenne, précurseur de l'Union européenne."
+  },
+  "Berlin_Wall": {
+   "title": "Construction du mur de Berlin",
+   "place": "Berlin",
+   "text": "La RDA isole Berlin-Ouest en une nuit ; le mur devient l'emblème de la division de la guerre froide."
+  },
+  "Fall_of_the_Berlin_Wall": {
+   "title": "Chute du mur de Berlin",
+   "place": "Berlin",
+   "text": "Les postes-frontières s'ouvrent le 9 novembre, au milieu des révolutions pacifiques en Europe de l'Est ; l'Allemagne est réunifiée en 1990."
+  },
+  "Dissolution_of_the_Soviet_Union": {
+   "title": "Dissolution de l'URSS",
+   "place": "Moscou",
+   "text": "L'URSS éclate en quinze États indépendants, redessinant la carte de l'Europe de l'Est et du Caucase."
+  },
+  "Maastricht_Treaty": {
+   "title": "Création de l'Union européenne",
+   "place": "Maastricht",
+   "text": "Le traité de Maastricht entre en vigueur, créant l'UE et posant les bases de l'euro."
+  },
+  "2004_enlargement_of_the_European_Union": {
+   "title": "Élargissement de l'UE à l'Est",
+   "place": "Bruxelles",
+   "text": "Dix pays, pour la plupart issus de l'ancienne sphère soviétique, rejoignent l'Union européenne lors de son plus grand élargissement."
+  }
+ }
+}

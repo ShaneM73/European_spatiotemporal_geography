@@ -1,0 +1,416 @@
+{
+ "lang": "de",
+ "name": "Deutsch",
+ "dir": "ltr",
+ "ui": {
+  "eyebrow": "Raum-Zeit-Atlas · 500 v. Chr. – 2010",
+  "title": "Raumzeitliche Geographie Europas",
+  "language": "Sprache",
+  "view": "Ansicht",
+  "viewCube": "Würfel",
+  "viewMap": "Karte",
+  "viewProfile": "Profil",
+  "timeAxis": "Zeitachse",
+  "proportional": "Proportional",
+  "even": "Gleichmäßig",
+  "relief": "Relief",
+  "timeStack": "Zeitstapel",
+  "labels": "Beschriftungen",
+  "events": "Historische Ereignisse",
+  "theme": "Design",
+  "light": "Hell",
+  "dark": "Dunkel",
+  "hint": "Ziehen zum Drehen · Scrollen zum Zoomen · Staat anklicken, um ihn durch die Zeit zu verfolgen · ◆ Ereignis anklicken für seine Geschichte · ← → blättern · Leertaste spielt ab",
+  "footer": "Grenzen: {basemaps} (A. Ourednik, GPL-3.0). Gelände: {terrain} (SRTM, GMTED, ETOPO1 u. a.). Ereignistexte verlinken auf Wikipedia. Historische Grenzen sind Näherungen.",
+  "polityNote": "Staatennamen werden wie in den Quelldaten angezeigt (Englisch).",
+  "loading": "Atlas wird geladen…",
+  "errorFile": "Bitte öffnen Sie diese Seite über einen Webserver (z. B. GitHub Pages oder `python -m http.server`).",
+  "errorLoad": "Der Atlas konnte nicht geladen werden: {msg}",
+  "snapshotUntil": "Momentaufnahme von {n} Staaten · gültig bis {year}",
+  "snapshotLatest": "Momentaufnahme von {n} Staaten · neueste",
+  "presentIn": "Vorhanden in Momentaufnahmen",
+  "under": "unter {name}",
+  "partOf": "Teil von {name}",
+  "inView": "{area} (im Ausschnitt)",
+  "notPresent": "{year} nicht vorhanden",
+  "bordersPrecision": "Grenzen {precision}",
+  "precision1": "ungefähr",
+  "precision2": "mäßig genau",
+  "precision3": "genau",
+  "bordersOf": "Grenzen von {year}",
+  "wikipedia": "Wikipedia ↗",
+  "yearCE": "{y} n. Chr.",
+  "yearBCE": "{y} v. Chr.",
+  "shortCE": "{y}",
+  "shortBCE": "{y} v. Chr.",
+  "km2": "{n} km²",
+  "play": "Abspielen",
+  "pause": "Pause",
+  "prevEvent": "Vorheriges Ereignis",
+  "nextEvent": "Nächstes Ereignis",
+  "close": "Schließen",
+  "clearSelection": "Auswahl aufheben",
+  "toggleControls": "Steuerung ein-/ausblenden",
+  "snapshotYear": "Jahr der Momentaufnahme"
+ },
+ "periods": {
+  "antiquity": "Klassische Antike",
+  "lateAntiquity": "Spätantike",
+  "earlyMiddleAges": "Frühmittelalter",
+  "highMiddleAges": "Hochmittelalter",
+  "lateMiddleAges": "Spätmittelalter",
+  "earlyModern": "Frühe Neuzeit",
+  "long19th": "Langes 19. Jahrhundert",
+  "worldWars": "Weltkriege & Zwischenkriegszeit",
+  "coldWar": "Kalter Krieg",
+  "contemporary": "Europa der Gegenwart"
+ },
+ "categories": {
+  "conflict": "Schlachten & Kriege",
+  "politics": "Staaten & Verträge",
+  "culture": "Religion & Kultur",
+  "society": "Gesellschaft, Wirtschaft & Katastrophen"
+ },
+ "events": {
+  "Battle_of_Marathon": {
+   "title": "Schlacht bei Marathon",
+   "place": "Marathon, Attika",
+   "text": "Athenische und platäische Hopliten schlagen die erste persische Invasion Griechenlands zurück – ein Gründungsmoment athenischen Selbstbewusstseins."
+  },
+  "Battle_of_Salamis": {
+   "title": "Seeschlacht von Salamis",
+   "place": "Meerenge von Salamis",
+   "text": "Die verbündete griechische Flotte vernichtet in der Meerenge vor Salamis einen Großteil der Flotte des Xerxes und wehrt die zweite persische Invasion ab."
+  },
+  "Peloponnesian_War": {
+   "title": "Beginn des Peloponnesischen Kriegs",
+   "place": "Athen und Sparta",
+   "text": "Ein 27-jähriger Krieg zwischen den Bündnissen Athens und Spartas erschöpft das klassische Griechenland und endet 404 v. Chr. mit Athens Niederlage."
+  },
+  "Battle_of_Gaugamela": {
+   "title": "Schlacht von Gaugamela",
+   "place": "Bei Erbil, Mesopotamien",
+   "text": "Alexander der Große besiegt Dareios III., bringt das persische Achämenidenreich zu Fall und eröffnet das Zeitalter des Hellenismus."
+  },
+  "Death_of_Alexander_the_Great": {
+   "title": "Tod Alexanders",
+   "place": "Babylon",
+   "text": "Alexander stirbt mit 32 Jahren in Babylon; seine Feldherren (die Diadochen) teilen sein Reich in rivalisierende hellenistische Königreiche auf."
+  },
+  "Hannibal%27s_crossing_of_the_Alps": {
+   "title": "Hannibals Alpenüberquerung",
+   "place": "Westalpen",
+   "text": "Im Zweiten Punischen Krieg führt der Karthager Hannibal ein Heer mit Kriegselefanten über die Alpen, um in das römische Italien einzufallen."
+  },
+  "Siege_of_Carthage_(Third_Punic_War)": {
+   "title": "Zerstörung Karthagos",
+   "place": "Karthago",
+   "text": "Rom zerstört Karthago am Ende des Dritten Punischen Kriegs (und plündert im selben Jahr Korinth) und wird zur Herrin des Mittelmeers."
+  },
+  "Assassination_of_Julius_Caesar": {
+   "title": "Ermordung Julius Caesars",
+   "place": "Rom",
+   "text": "Senatoren erstechen den Diktator Caesar an den Iden des März; die folgenden Bürgerkriege beenden die Römische Republik."
+  },
+  "Battle_of_Actium": {
+   "title": "Schlacht bei Actium",
+   "place": "Ambrakischer Golf, Griechenland",
+   "text": "Octavian besiegt Antonius und Kleopatra zur See; als Augustus wird er 27 v. Chr. der erste römische Kaiser."
+  },
+  "Battle_of_the_Teutoburg_Forest": {
+   "title": "Varusschlacht",
+   "place": "Kalkriese, Niedersachsen",
+   "text": "Germanische Stämme unter Arminius vernichten drei römische Legionen und stoppen die römische Expansion östlich des Rheins."
+  },
+  "Hadrian%27s_Wall": {
+   "title": "Baubeginn des Hadrianswalls",
+   "place": "Nordbritannien",
+   "text": "Kaiser Hadrian lässt einen befestigten Wall quer durch Britannien errichten – Zeichen der Wende von der Expansion zur Grenzverteidigung."
+  },
+  "Edict_of_Milan": {
+   "title": "Mailänder Toleranzedikt",
+   "place": "Mailand",
+   "text": "Konstantin und Licinius gewähren im ganzen Reich Religionsfreiheit und beenden die Christenverfolgung."
+  },
+  "Constantinople": {
+   "title": "Gründung Konstantinopels",
+   "place": "Byzantion / Konstantinopel",
+   "text": "Konstantin weiht seine neue Hauptstadt am Bosporus ein; sie wird über tausend Jahre lang Sitz des Oströmischen Reiches sein."
+  },
+  "Sack_of_Rome_(410)": {
+   "title": "Plünderung Roms",
+   "place": "Rom",
+   "text": "Westgoten unter Alarich plündern Rom – zum ersten Mal seit 800 Jahren fällt die Stadt einem fremden Feind in die Hände."
+  },
+  "Battle_of_the_Catalaunian_Plains": {
+   "title": "Schlacht auf den Katalaunischen Feldern",
+   "place": "Champagne, Gallien",
+   "text": "Eine römisch-westgotische Koalition unter Aëtius hält die Hunnen Attilas in einer der größten Schlachten der Spätantike auf."
+  },
+  "Fall_of_the_Western_Roman_Empire": {
+   "title": "Ende des Weströmischen Reiches",
+   "place": "Ravenna",
+   "text": "Odoaker setzt den jungen Kaiser Romulus Augustulus ab; das Datum gilt üblicherweise als Ende der römischen Herrschaft im Westen."
+  },
+  "Plague_of_Justinian": {
+   "title": "Justinianische Pest",
+   "place": "Konstantinopel",
+   "text": "Die erste bekannte Pandemie der Beulenpest trifft den Mittelmeerraum und tötet einen großen Teil der Bevölkerung Konstantinopels."
+  },
+  "Hijrah": {
+   "title": "Die Hidschra",
+   "place": "Von Mekka nach Medina",
+   "text": "Mohammed und seine Anhänger wandern von Mekka nach Medina aus; das Jahr wird zum Beginn der islamischen Zeitrechnung."
+  },
+  "Battle_of_the_Yarmuk": {
+   "title": "Schlacht am Jarmuk",
+   "place": "Fluss Jarmuk, Levante",
+   "text": "Arabisch-muslimische Truppen besiegen das byzantinische Heer und öffnen Syrien und die Levante für das frühe Kalifat."
+  },
+  "Umayyad_conquest_of_Hispania": {
+   "title": "Umayyadische Eroberung Hispaniens",
+   "place": "Guadalete, Andalusien",
+   "text": "Tariq ibn Ziyad setzt von Nordafrika über und besiegt den Westgotenkönig Roderich – der Beginn von fast acht Jahrhunderten al-Andalus."
+  },
+  "Battle_of_Tours": {
+   "title": "Schlacht von Tours und Poitiers",
+   "place": "Zwischen Tours und Poitiers",
+   "text": "Fränkische Truppen unter Karl Martell besiegen ein umayyadisches Heer auf Beutezug und stärken die Macht der Karolinger in Gallien."
+  },
+  "Charlemagne": {
+   "title": "Kaiserkrönung Karls des Großen",
+   "place": "Rom",
+   "text": "Papst Leo III. krönt den Frankenkönig Karl den Großen am Weihnachtstag zum Kaiser und erneuert damit den Kaisertitel im Westen."
+  },
+  "Treaty_of_Verdun": {
+   "title": "Vertrag von Verdun",
+   "place": "Verdun",
+   "text": "Die Enkel Karls des Großen teilen das Karolingerreich in drei Königreiche – eine Vorahnung Frankreichs und Deutschlands."
+  },
+  "Rurik": {
+   "title": "Rurik in Nowgorod",
+   "place": "Nowgorod",
+   "text": "Laut der Nestorchronik wird der Waräger Rurik zur Herrschaft über Nowgorod gerufen – der traditionelle Beginn des Staates der Rus."
+  },
+  "Otto_the_Great": {
+   "title": "Kaiserkrönung Ottos I.",
+   "place": "Rom",
+   "text": "Der ostfränkisch-deutsche König Otto I. wird zum Kaiser gekrönt; dies gilt üblicherweise als Gründung des Heiligen Römischen Reiches."
+  },
+  "Christianization_of_Kievan_Rus%27": {
+   "title": "Christianisierung der Kiewer Rus",
+   "place": "Kiew",
+   "text": "Großfürst Wladimir nimmt das byzantinisch-orthodoxe Christentum an und prägt damit die religiöse Kultur Osteuropas."
+  },
+  "East%E2%80%93West_Schism": {
+   "title": "Morgenländisches Schisma",
+   "place": "Konstantinopel und Rom",
+   "text": "Gegenseitige Exkommunikationen zwischen päpstlichen Legaten und dem Patriarchen von Konstantinopel besiegeln die Spaltung in katholische und orthodoxe Kirche."
+  },
+  "Battle_of_Hastings": {
+   "title": "Schlacht bei Hastings",
+   "place": "Hastings, England",
+   "text": "Wilhelm von der Normandie besiegt Harald II. und leitet die normannische Eroberung Englands ein."
+  },
+  "Battle_of_Manzikert": {
+   "title": "Schlacht bei Manzikert",
+   "place": "Malazgirt, Anatolien",
+   "text": "Die Seldschuken besiegen den byzantinischen Kaiser und nehmen ihn gefangen; Anatolien öffnet sich der türkischen Besiedlung."
+  },
+  "Siege_of_Jerusalem_(1099)": {
+   "title": "Kreuzfahrer erobern Jerusalem",
+   "place": "Jerusalem",
+   "text": "Der Erste Kreuzzug erobert Jerusalem nach Belagerung und Massaker und gründet das Kreuzfahrerkönigreich Jerusalem."
+  },
+  "Sack_of_Constantinople": {
+   "title": "Plünderung Konstantinopels",
+   "place": "Konstantinopel",
+   "text": "Der Vierte Kreuzzug wendet sich gegen Konstantinopel und plündert die Stadt, was das Byzantinische Reich schwer schwächt."
+  },
+  "Magna_Carta": {
+   "title": "Magna Carta",
+   "place": "Runnymede, England",
+   "text": "Aufständische Barone zwingen König Johann, eine Urkunde zur Begrenzung der königlichen Macht zu besiegeln – später ein Prüfstein konstitutioneller Herrschaft."
+  },
+  "Siege_of_Kiev_(1240)": {
+   "title": "Mongolen zerstören Kiew",
+   "place": "Kiew",
+   "text": "Batu Khans mongolisches Heer zerstört Kiew während des Einfalls in die Rus; es beginnt die Zeit der Goldenen Horde."
+  },
+  "Siege_of_Baghdad_(1258)": {
+   "title": "Mongolen erobern Bagdad",
+   "place": "Bagdad",
+   "text": "Hülegüs Heer nimmt Bagdad ein und tötet den Kalifen; damit endet die Herrschaft der Abbasiden von dieser Stadt aus."
+  },
+  "Black_Death": {
+   "title": "Der Schwarze Tod erreicht Europa",
+   "place": "Messina, Sizilien",
+   "text": "Die Pest kommt auf genuesischen Schiffen vom Schwarzen Meer; binnen fünf Jahren tötet sie wohl ein Drittel oder mehr der Bevölkerung Europas."
+  },
+  "Fall_of_Constantinople": {
+   "title": "Fall Konstantinopels",
+   "place": "Konstantinopel",
+   "text": "Sultan Mehmed II. erobert die Stadt und beendet das Byzantinische Reich; sie wird osmanische Hauptstadt."
+  },
+  "Fall_of_Granada": {
+   "title": "Fall Granadas",
+   "place": "Granada",
+   "text": "Kastilien und Aragón erobern den letzten muslimischen Staat auf der Iberischen Halbinsel; im selben Jahr segelt Kolumbus im Auftrag der spanischen Krone nach Westen."
+  },
+  "Ninety-five_Theses": {
+   "title": "Luthers 95 Thesen",
+   "place": "Wittenberg",
+   "text": "Martin Luther stellt den Ablasshandel in Frage und löst damit die Reformation aus."
+  },
+  "Siege_of_Vienna_(1529)": {
+   "title": "Erste Wiener Türkenbelagerung",
+   "place": "Wien",
+   "text": "Das osmanische Heer Süleymans des Prächtigen belagert Wien, zieht aber ab – für ein Jahrhundert die Grenze des osmanischen Vordringens in Mitteleuropa."
+  },
+  "Battle_of_Lepanto": {
+   "title": "Seeschlacht von Lepanto",
+   "place": "Golf von Patras",
+   "text": "Die Galeeren der Heiligen Liga besiegen die osmanische Flotte in der größten Seeschlacht des Zeitalters der Ruderkriegsschiffe."
+  },
+  "Spanish_Armada": {
+   "title": "Spanische Armada",
+   "place": "Ärmelkanal",
+   "text": "Die Invasionsflotte Philipps II. wird vor Gravelines zurückgeschlagen und von Stürmen zerstreut; das elisabethanische England ist gesichert."
+  },
+  "Thirty_Years%27_War": {
+   "title": "Beginn des Dreißigjährigen Kriegs",
+   "place": "Prag",
+   "text": "Der Prager Fenstersturz löst einen Krieg aus, der die deutschen Lande verwüstet und den Großteil Europas erfasst."
+  },
+  "Peace_of_Westphalia": {
+   "title": "Westfälischer Friede",
+   "place": "Münster und Osnabrück",
+   "text": "Friedensverträge beenden den Dreißigjährigen und den Achtzigjährigen Krieg; sie gelten oft als Ursprung des modernen Systems souveräner Staaten."
+  },
+  "Battle_of_Vienna": {
+   "title": "Schlacht am Kahlenberg",
+   "place": "Wien",
+   "text": "Ein Entsatzheer unter Johann III. Sobieski sprengt die osmanische Belagerung; es beginnt die habsburgische Rückeroberung Ungarns."
+  },
+  "Saint_Petersburg": {
+   "title": "Gründung Sankt Petersburgs",
+   "place": "Sankt Petersburg",
+   "text": "Peter der Große gründet an der Ostsee eine neue Hauptstadt als Russlands „Fenster nach Europa“."
+  },
+  "French_Revolution": {
+   "title": "Französische Revolution",
+   "place": "Paris",
+   "text": "Der Sturm auf die Bastille am 14. Juli wird zum Symbol einer Revolution, die das Ancien Régime in Frankreich stürzt."
+  },
+  "Battle_of_Austerlitz": {
+   "title": "Schlacht bei Austerlitz",
+   "place": "Slavkov u Brna, Mähren",
+   "text": "Napoleon besiegt Russland und Österreich; im folgenden Jahr wird das Heilige Römische Reich aufgelöst."
+  },
+  "French_invasion_of_Russia": {
+   "title": "Napoleons Russlandfeldzug",
+   "place": "Moskau",
+   "text": "Die Grande Armée erreicht das brennende Moskau, wird aber auf dem winterlichen Rückzug vernichtet; Napoleons Macht ist gebrochen."
+  },
+  "Congress_of_Vienna": {
+   "title": "Waterloo und Wiener Kongress",
+   "place": "Waterloo",
+   "text": "Napoleons endgültige Niederlage bei Waterloo fällt mit der Wiener Neuordnung zusammen, die Europas Landkarte für eine Generation neu zeichnet."
+  },
+  "Revolutions_of_1848": {
+   "title": "Revolutionen von 1848",
+   "place": "Paris, Wien, Berlin und andernorts",
+   "text": "Eine Welle liberaler und nationaler Erhebungen erfasst Europa; die meisten werden niedergeschlagen, doch in Österreich endet die Leibeigenschaft."
+  },
+  "Suez_Canal": {
+   "title": "Eröffnung des Suezkanals",
+   "place": "Landenge von Suez",
+   "text": "Der Kanal verbindet das Mittelmeer mit dem Roten Meer und verändert den Handel zwischen Europa und Asien grundlegend."
+  },
+  "Proclamation_of_the_German_Empire": {
+   "title": "Proklamation des Deutschen Kaiserreichs",
+   "place": "Versailles",
+   "text": "Nach dem Sieg über Frankreich wird Wilhelm I. im Spiegelsaal zum Deutschen Kaiser proklamiert; die deutsche Einigung ist vollendet."
+  },
+  "Congress_of_Berlin": {
+   "title": "Berliner Kongress",
+   "place": "Berlin",
+   "text": "Die Großmächte revidieren nach dem Russisch-Türkischen Krieg die Ordnung auf dem Balkan; Rumänien, Serbien und Montenegro werden unabhängig."
+  },
+  "Assassination_of_Archduke_Franz_Ferdinand": {
+   "title": "Attentat von Sarajevo",
+   "place": "Sarajevo",
+   "text": "Die Ermordung von Erzherzog Franz Ferdinand löst die Julikrise und den Ersten Weltkrieg aus."
+  },
+  "Battle_of_Verdun": {
+   "title": "Schlacht um Verdun",
+   "place": "Verdun",
+   "text": "Eine zehnmonatige Abnutzungsschlacht zwischen Frankreich und Deutschland wird zum Symbol der Westfront."
+  },
+  "Russian_Revolution": {
+   "title": "Russische Revolution",
+   "place": "Petrograd",
+   "text": "Der Zar dankt im Februar ab, im Oktober ergreifen die Bolschewiki die Macht – der Weg zum Sowjetstaat."
+  },
+  "Treaty_of_Versailles": {
+   "title": "Versailler Vertrag",
+   "place": "Versailles",
+   "text": "Der Friedensvertrag mit Deutschland zerschlägt gemeinsam mit den übrigen Pariser Vorortverträgen Imperien und schafft neue Staaten in Mitteleuropa."
+  },
+  "Proclamation_of_the_Republic_of_Turkey": {
+   "title": "Ausrufung der Republik Türkei",
+   "place": "Ankara",
+   "text": "Nach dem Zusammenbruch des Osmanischen Reiches ruft Mustafa Kemal die Türkische Republik mit der Hauptstadt Ankara aus."
+  },
+  "Invasion_of_Poland": {
+   "title": "Beginn des Zweiten Weltkriegs",
+   "place": "Westerplatte, Danzig",
+   "text": "Deutschland überfällt am 1. September Polen; Großbritannien und Frankreich erklären zwei Tage später den Krieg."
+  },
+  "Battle_of_Stalingrad": {
+   "title": "Schlacht von Stalingrad",
+   "place": "Stalingrad (Wolgograd)",
+   "text": "Die sowjetische Einkesselung und Vernichtung der deutschen 6. Armee markiert einen Wendepunkt des Kriegs in Europa."
+  },
+  "Normandy_landings": {
+   "title": "Landung in der Normandie",
+   "place": "Normandie",
+   "text": "Alliierte Truppen landen am 6. Juni in der Normandie und eröffnen eine Westfront gegen das nationalsozialistische Deutschland."
+  },
+  "Victory_in_Europe_Day": {
+   "title": "Kriegsende in Europa",
+   "place": "Berlin",
+   "text": "Berlin fällt, und Deutschland kapituliert im Mai bedingungslos; Europa wird in Besatzungszonen aufgeteilt."
+  },
+  "Treaty_of_Rome": {
+   "title": "Römische Verträge",
+   "place": "Rom",
+   "text": "Sechs Staaten gründen die Europäische Wirtschaftsgemeinschaft, die Vorläuferin der Europäischen Union."
+  },
+  "Berlin_Wall": {
+   "title": "Bau der Berliner Mauer",
+   "place": "Berlin",
+   "text": "Die DDR riegelt West-Berlin über Nacht ab; die Mauer wird zum Sinnbild der Teilung im Kalten Krieg."
+  },
+  "Fall_of_the_Berlin_Wall": {
+   "title": "Fall der Berliner Mauer",
+   "place": "Berlin",
+   "text": "Am 9. November öffnen sich die Grenzübergänge inmitten friedlicher Revolutionen in Osteuropa; 1990 wird Deutschland wiedervereinigt."
+  },
+  "Dissolution_of_the_Soviet_Union": {
+   "title": "Zerfall der Sowjetunion",
+   "place": "Moskau",
+   "text": "Die UdSSR zerfällt in fünfzehn unabhängige Staaten; die Landkarte Osteuropas und des Kaukasus wird neu gezeichnet."
+  },
+  "Maastricht_Treaty": {
+   "title": "Gründung der Europäischen Union",
+   "place": "Maastricht",
+   "text": "Der Vertrag von Maastricht tritt in Kraft, begründet die EU und legt den Grundstein für den Euro."
+  },
+  "2004_enlargement_of_the_European_Union": {
+   "title": "EU-Osterweiterung",
+   "place": "Brüssel",
+   "text": "Zehn Länder, die meisten zuvor im sowjetischen Einflussbereich, treten in ihrer bislang größten Erweiterungsrunde der Europäischen Union bei."
+  }
+ }
+}

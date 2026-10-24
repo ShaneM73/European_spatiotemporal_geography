@@ -1,0 +1,416 @@
+{
+ "lang": "zh-CN",
+ "name": "简体中文",
+ "dir": "ltr",
+ "ui": {
+  "eyebrow": "时空地图集 · 公元前500年 – 2010年",
+  "title": "欧洲时空地理",
+  "language": "语言",
+  "view": "视图",
+  "viewCube": "立方体",
+  "viewMap": "地图",
+  "viewProfile": "侧视",
+  "timeAxis": "时间轴",
+  "proportional": "按比例",
+  "even": "等距",
+  "relief": "地形",
+  "timeStack": "时间堆叠",
+  "labels": "标签",
+  "events": "历史事件",
+  "theme": "主题",
+  "light": "浅色",
+  "dark": "深色",
+  "hint": "拖动旋转 · 滚轮缩放 · 点击政权追踪其历史变迁 · 点击 ◆ 事件查看详情 · ← → 逐步切换 · 空格键播放",
+  "footer": "疆界：{basemaps}（A. Ourednik，GPL-3.0）。地形：{terrain}（SRTM、GMTED、ETOPO1 等）。事件摘要链接至维基百科。历史疆界为近似值。",
+  "polityNote": "政权名称按源数据显示（英文）。",
+  "loading": "正在加载地图集…",
+  "errorFile": "请通过 Web 服务器打开本页面（例如 GitHub Pages 或 `python -m http.server`）。",
+  "errorLoad": "无法加载地图集：{msg}",
+  "snapshotUntil": "{n} 个政权的快照 · 显示至{year}",
+  "snapshotLatest": "{n} 个政权的快照 · 最新",
+  "presentIn": "出现于快照",
+  "under": "隶属于{name}",
+  "partOf": "{name}的一部分",
+  "inView": "{area}（视野内）",
+  "notPresent": "{year}不存在",
+  "bordersPrecision": "疆界{precision}",
+  "precision1": "大致",
+  "precision2": "较精确",
+  "precision3": "精确",
+  "bordersOf": "{year}的疆界",
+  "wikipedia": "维基百科 ↗",
+  "yearCE": "公元{y}年",
+  "yearBCE": "公元前{y}年",
+  "shortCE": "{y}",
+  "shortBCE": "前{y}",
+  "km2": "{n} 平方公里",
+  "play": "播放",
+  "pause": "暂停",
+  "prevEvent": "上一事件",
+  "nextEvent": "下一事件",
+  "close": "关闭",
+  "clearSelection": "清除选择",
+  "toggleControls": "显示/隐藏控件",
+  "snapshotYear": "快照年份"
+ },
+ "periods": {
+  "antiquity": "古典时代",
+  "lateAntiquity": "古典时代晚期",
+  "earlyMiddleAges": "中世纪早期",
+  "highMiddleAges": "中世纪盛期",
+  "lateMiddleAges": "中世纪晚期",
+  "earlyModern": "近代早期",
+  "long19th": "漫长的19世纪",
+  "worldWars": "世界大战与两战之间",
+  "coldWar": "冷战",
+  "contemporary": "当代欧洲"
+ },
+ "categories": {
+  "conflict": "战役与战争",
+  "politics": "国家与条约",
+  "culture": "宗教与文化",
+  "society": "社会、经济与灾难"
+ },
+ "events": {
+  "Battle_of_Marathon": {
+   "title": "马拉松战役",
+   "place": "阿提卡，马拉松",
+   "text": "雅典和普拉提亚的重装步兵击退波斯第一次入侵希腊，成为雅典人自信心奠基的时刻。"
+  },
+  "Battle_of_Salamis": {
+   "title": "萨拉米斯海战",
+   "place": "萨拉米斯海峡",
+   "text": "希腊联合舰队在萨拉米斯附近的狭窄海峡重创薛西斯的海军，击退了波斯的第二次入侵。"
+  },
+  "Peloponnesian_War": {
+   "title": "伯罗奔尼撒战争爆发",
+   "place": "雅典与斯巴达",
+   "text": "雅典与斯巴达两大同盟之间长达27年的战争耗尽了古典希腊的元气，以雅典于公元前404年战败告终。"
+  },
+  "Battle_of_Gaugamela": {
+   "title": "高加米拉战役",
+   "place": "美索不达米亚，埃尔比勒附近",
+   "text": "亚历山大大帝击败大流士三世，推翻波斯阿契美尼德帝国，开启希腊化时代。"
+  },
+  "Death_of_Alexander_the_Great": {
+   "title": "亚历山大之死",
+   "place": "巴比伦",
+   "text": "亚历山大在巴比伦去世，年仅32岁；他的部将（继业者）将帝国瓜分为相互敌对的希腊化王国。"
+  },
+  "Hannibal%27s_crossing_of_the_Alps": {
+   "title": "汉尼拔翻越阿尔卑斯山",
+   "place": "西阿尔卑斯山",
+   "text": "第二次布匿战争中，迦太基的汉尼拔率领军队和战象翻越阿尔卑斯山，入侵罗马治下的意大利。"
+  },
+  "Siege_of_Carthage_(Third_Punic_War)": {
+   "title": "迦太基毁灭",
+   "place": "迦太基",
+   "text": "第三次布匿战争末期，罗马将迦太基夷为平地（同年还洗劫了科林斯），成为地中海的霸主。"
+  },
+  "Assassination_of_Julius_Caesar": {
+   "title": "尤利乌斯·恺撒遇刺",
+   "place": "罗马",
+   "text": "元老们在三月望日刺杀独裁官恺撒；随后的内战终结了罗马共和国。"
+  },
+  "Battle_of_Actium": {
+   "title": "亚克兴战役",
+   "place": "希腊，安布拉基亚湾",
+   "text": "屋大维在海战中击败安东尼与克娄巴特拉；公元前27年，他以奥古斯都之名成为罗马首位皇帝。"
+  },
+  "Battle_of_the_Teutoburg_Forest": {
+   "title": "条顿堡森林战役",
+   "place": "下萨克森，卡尔克里泽",
+   "text": "阿米尼乌斯率领的日耳曼部落全歼三个罗马军团，阻止了罗马向莱茵河以东的扩张。"
+  },
+  "Hadrian%27s_Wall": {
+   "title": "哈德良长城动工",
+   "place": "不列颠北部",
+   "text": "哈德良皇帝下令修建横贯不列颠的防御城墙，标志着帝国从扩张转向固守边疆。"
+  },
+  "Edict_of_Milan": {
+   "title": "米兰敕令",
+   "place": "米兰",
+   "text": "君士坦丁与李锡尼在全帝国推行宗教宽容，结束了对基督徒的迫害。"
+  },
+  "Constantinople": {
+   "title": "君士坦丁堡建立",
+   "place": "拜占庭 / 君士坦丁堡",
+   "text": "君士坦丁在博斯普鲁斯海峡畔为新都举行落成典礼；此后一千多年，这里一直是东罗马帝国的都城。"
+  },
+  "Sack_of_Rome_(410)": {
+   "title": "罗马城遭洗劫",
+   "place": "罗马",
+   "text": "阿拉里克率领的西哥特人洗劫罗马，这是该城800年来首次落入外敌之手。"
+  },
+  "Battle_of_the_Catalaunian_Plains": {
+   "title": "沙隆战役",
+   "place": "高卢，香槟",
+   "text": "埃提乌斯率领的罗马—西哥特联军在古典时代晚期规模最大的战役之一中遏制了阿提拉的匈人。"
+  },
+  "Fall_of_the_Western_Roman_Empire": {
+   "title": "西罗马帝国灭亡",
+   "place": "拉文纳",
+   "text": "奥多亚克废黜少年皇帝罗慕路斯·奥古斯都；这一年通常被视为罗马在西方统治的终结。"
+  },
+  "Plague_of_Justinian": {
+   "title": "查士丁尼瘟疫",
+   "place": "君士坦丁堡",
+   "text": "已知的第一次鼠疫大流行席卷地中海，夺去了君士坦丁堡大量人口的生命。"
+  },
+  "Hijrah": {
+   "title": "希吉拉（徙志）",
+   "place": "麦加至麦地那",
+   "text": "穆罕默德及其追随者从麦加迁往麦地那；这一年成为伊斯兰历的纪元元年。"
+  },
+  "Battle_of_the_Yarmuk": {
+   "title": "雅尔穆克战役",
+   "place": "黎凡特，雅尔穆克河",
+   "text": "阿拉伯穆斯林军队击败拜占庭军队，为早期哈里发国打开了叙利亚和黎凡特的大门。"
+  },
+  "Umayyad_conquest_of_Hispania": {
+   "title": "倭马亚王朝征服伊比利亚",
+   "place": "安达卢西亚，瓜达莱特",
+   "text": "塔里克·伊本·齐亚德从北非渡海，击败西哥特国王罗德里克，开启了安达卢斯近八个世纪的历史。"
+  },
+  "Battle_of_Tours": {
+   "title": "图尔战役",
+   "place": "图尔与普瓦捷之间",
+   "text": "查理·马特率领的法兰克军队击败倭马亚劫掠大军，巩固了加洛林家族在高卢的权力。"
+  },
+  "Charlemagne": {
+   "title": "查理曼加冕称帝",
+   "place": "罗马",
+   "text": "教宗利奥三世在圣诞节为法兰克国王查理曼加冕为皇帝，在西方复兴了帝号。"
+  },
+  "Treaty_of_Verdun": {
+   "title": "凡尔登条约",
+   "place": "凡尔登",
+   "text": "查理曼的孙子们将加洛林帝国一分为三，预示了日后法国与德国的形成。"
+  },
+  "Rurik": {
+   "title": "留里克入主诺夫哥罗德",
+   "place": "诺夫哥罗德",
+   "text": "据《往年纪事》记载，瓦良格人留里克受邀统治诺夫哥罗德，传统上被视为罗斯国家的开端。"
+  },
+  "Otto_the_Great": {
+   "title": "奥托一世加冕称帝",
+   "place": "罗马",
+   "text": "德意志国王奥托一世加冕为皇帝，通常被视为神圣罗马帝国的建立。"
+  },
+  "Christianization_of_Kievan_Rus%27": {
+   "title": "基辅罗斯受洗",
+   "place": "基辅",
+   "text": "弗拉基米尔大公皈依拜占庭东正教，塑造了东欧的宗教文化。"
+  },
+  "East%E2%80%93West_Schism": {
+   "title": "东西教会大分裂",
+   "place": "君士坦丁堡与罗马",
+   "text": "教宗使节与君士坦丁堡牧首相互绝罚，使天主教会与东正教会正式分裂。"
+  },
+  "Battle_of_Hastings": {
+   "title": "黑斯廷斯战役",
+   "place": "英格兰，黑斯廷斯",
+   "text": "诺曼底公爵威廉击败哈罗德二世，开启了诺曼征服英格兰。"
+  },
+  "Battle_of_Manzikert": {
+   "title": "曼齐刻尔特战役",
+   "place": "安纳托利亚，马拉兹吉尔特",
+   "text": "塞尔柱突厥人击败并俘虏拜占庭皇帝，为突厥人定居安纳托利亚打开了大门。"
+  },
+  "Siege_of_Jerusalem_(1099)": {
+   "title": "十字军攻占耶路撒冷",
+   "place": "耶路撒冷",
+   "text": "第一次十字军东征经围城和屠杀攻占耶路撒冷，建立了十字军国家耶路撒冷王国。"
+  },
+  "Sack_of_Constantinople": {
+   "title": "君士坦丁堡遭洗劫",
+   "place": "君士坦丁堡",
+   "text": "第四次十字军东征转而攻打君士坦丁堡并大肆洗劫，使拜占庭帝国元气大伤。"
+  },
+  "Magna_Carta": {
+   "title": "大宪章",
+   "place": "英格兰，兰尼米德",
+   "text": "反叛的贵族迫使约翰王在限制王权的宪章上加盖印玺，此后成为宪政的试金石。"
+  },
+  "Siege_of_Kiev_(1240)": {
+   "title": "蒙古攻陷基辅",
+   "place": "基辅",
+   "text": "拔都的蒙古大军在入侵罗斯期间摧毁基辅，开启了金帐汗国时代。"
+  },
+  "Siege_of_Baghdad_(1258)": {
+   "title": "蒙古攻陷巴格达",
+   "place": "巴格达",
+   "text": "旭烈兀的军队攻占巴格达并处死哈里发，终结了阿拔斯王朝以该城为中心的统治。"
+  },
+  "Black_Death": {
+   "title": "黑死病传入欧洲",
+   "place": "西西里，墨西拿",
+   "text": "瘟疫随热那亚商船从黑海传入；五年之内，或许三分之一以上的欧洲人死于此疫。"
+  },
+  "Fall_of_Constantinople": {
+   "title": "君士坦丁堡陷落",
+   "place": "君士坦丁堡",
+   "text": "苏丹穆罕默德二世攻占该城，拜占庭帝国灭亡；此城成为奥斯曼帝国的首都。"
+  },
+  "Fall_of_Granada": {
+   "title": "格拉纳达陷落",
+   "place": "格拉纳达",
+   "text": "卡斯蒂利亚与阿拉贡攻取伊比利亚最后一个穆斯林国家；同年哥伦布在西班牙王室资助下西航。"
+  },
+  "Ninety-five_Theses": {
+   "title": "路德《九十五条论纲》",
+   "place": "维滕贝格",
+   "text": "马丁·路德质疑出售赎罪券，引发了新教宗教改革。"
+  },
+  "Siege_of_Vienna_(1529)": {
+   "title": "第一次维也纳之围",
+   "place": "维也纳",
+   "text": "苏莱曼大帝的奥斯曼军队围攻维也纳后撤退，此后一个世纪这里成为奥斯曼在中欧推进的极限。"
+  },
+  "Battle_of_Lepanto": {
+   "title": "勒班陀海战",
+   "place": "帕特雷湾",
+   "text": "神圣同盟的桨帆船击败奥斯曼舰队，这是桨帆战船时代规模最大的海战。"
+  },
+  "Spanish_Armada": {
+   "title": "西班牙无敌舰队",
+   "place": "英吉利海峡",
+   "text": "腓力二世的入侵舰队在格拉沃利讷外海被击退，又遭风暴吹散，确保了伊丽莎白时代英格兰的安全。"
+  },
+  "Thirty_Years%27_War": {
+   "title": "三十年战争爆发",
+   "place": "布拉格",
+   "text": "布拉格掷出窗外事件引发一场战争，使德意志各邦饱受蹂躏，并将欧洲大部分国家卷入其中。"
+  },
+  "Peace_of_Westphalia": {
+   "title": "威斯特伐利亚和约",
+   "place": "明斯特与奥斯纳布吕克",
+   "text": "一系列条约结束了三十年战争和八十年战争，常被视为现代主权国家体系的起源。"
+  },
+  "Battle_of_Vienna": {
+   "title": "维也纳之战",
+   "place": "维也纳",
+   "text": "扬三世·索别斯基率领的援军击破奥斯曼的围城，开启了哈布斯堡王朝收复匈牙利的进程。"
+  },
+  "Saint_Petersburg": {
+   "title": "圣彼得堡建城",
+   "place": "圣彼得堡",
+   "text": "彼得大帝在波罗的海之滨建立新都，作为俄国“通往欧洲的窗口”。"
+  },
+  "French_Revolution": {
+   "title": "法国大革命",
+   "place": "巴黎",
+   "text": "7月14日攻占巴士底狱成为这场推翻法国旧制度的革命的象征。"
+  },
+  "Battle_of_Austerlitz": {
+   "title": "奥斯特里茨战役",
+   "place": "摩拉维亚，斯拉夫科夫",
+   "text": "拿破仑击败俄国和奥地利；次年神圣罗马帝国解体。"
+  },
+  "French_invasion_of_Russia": {
+   "title": "拿破仑入侵俄国",
+   "place": "莫斯科",
+   "text": "大军团抵达燃烧中的莫斯科，却在冬季撤退中覆灭，拿破仑的势力由此瓦解。"
+  },
+  "Congress_of_Vienna": {
+   "title": "滑铁卢与维也纳会议",
+   "place": "滑铁卢",
+   "text": "拿破仑在滑铁卢最终战败，与此同时维也纳会议重划欧洲版图，影响延续了一代人。"
+  },
+  "Revolutions_of_1848": {
+   "title": "1848年革命",
+   "place": "巴黎、维也纳、柏林等地",
+   "text": "一波自由主义与民族主义起义席卷欧洲；多数遭到镇压，但奥地利由此废除了农奴制。"
+  },
+  "Suez_Canal": {
+   "title": "苏伊士运河通航",
+   "place": "苏伊士地峡",
+   "text": "运河连通地中海与红海，彻底改变了欧亚之间的贸易。"
+  },
+  "Proclamation_of_the_German_Empire": {
+   "title": "德意志帝国宣告成立",
+   "place": "凡尔赛",
+   "text": "战胜法国后，威廉一世在镜厅被宣布为德意志皇帝，德国统一由此完成。"
+  },
+  "Congress_of_Berlin": {
+   "title": "柏林会议",
+   "place": "柏林",
+   "text": "俄土战争后列强修订巴尔干安排；罗马尼亚、塞尔维亚和黑山获得独立。"
+  },
+  "Assassination_of_Archduke_Franz_Ferdinand": {
+   "title": "萨拉热窝事件",
+   "place": "萨拉热窝",
+   "text": "弗朗茨·斐迪南大公遇刺，引发七月危机和第一次世界大战。"
+  },
+  "Battle_of_Verdun": {
+   "title": "凡尔登战役",
+   "place": "凡尔登",
+   "text": "法德之间长达十个月的消耗战，成为西线战场的象征。"
+  },
+  "Russian_Revolution": {
+   "title": "俄国革命",
+   "place": "彼得格勒",
+   "text": "沙皇于二月退位，布尔什维克于十月夺取政权，由此建立苏维埃国家。"
+  },
+  "Treaty_of_Versailles": {
+   "title": "凡尔赛条约",
+   "place": "凡尔赛",
+   "text": "对德和约与巴黎其他条约一道，瓦解了多个帝国，并在中欧建立起一批新国家。"
+  },
+  "Proclamation_of_the_Republic_of_Turkey": {
+   "title": "土耳其共和国成立",
+   "place": "安卡拉",
+   "text": "奥斯曼帝国崩溃后，穆斯塔法·凯末尔宣布成立土耳其共和国，定都安卡拉。"
+  },
+  "Invasion_of_Poland": {
+   "title": "第二次世界大战爆发",
+   "place": "格但斯克，韦斯特普拉特",
+   "text": "德国于9月1日入侵波兰；两天后英国和法国对德宣战。"
+  },
+  "Battle_of_Stalingrad": {
+   "title": "斯大林格勒战役",
+   "place": "斯大林格勒（伏尔加格勒）",
+   "text": "苏军合围并歼灭德国第六集团军，成为欧洲战场的转折点。"
+  },
+  "Normandy_landings": {
+   "title": "诺曼底登陆",
+   "place": "诺曼底",
+   "text": "盟军于6月6日在诺曼底登陆，开辟了对抗纳粹德国的西线战场。"
+  },
+  "Victory_in_Europe_Day": {
+   "title": "欧洲战事结束",
+   "place": "柏林",
+   "text": "柏林陷落，德国于5月无条件投降；欧洲被划分为多个占领区。"
+  },
+  "Treaty_of_Rome": {
+   "title": "罗马条约",
+   "place": "罗马",
+   "text": "六国建立欧洲经济共同体，即欧洲联盟的前身。"
+  },
+  "Berlin_Wall": {
+   "title": "柏林墙修建",
+   "place": "柏林",
+   "text": "东德一夜之间封锁西柏林，柏林墙由此成为冷战分裂的象征。"
+  },
+  "Fall_of_the_Berlin_Wall": {
+   "title": "柏林墙倒塌",
+   "place": "柏林",
+   "text": "在东欧各地和平革命的浪潮中，边境口岸于11月9日开放；德国于1990年统一。"
+  },
+  "Dissolution_of_the_Soviet_Union": {
+   "title": "苏联解体",
+   "place": "莫斯科",
+   "text": "苏联分裂为十五个独立国家，重绘了东欧和高加索的版图。"
+  },
+  "Maastricht_Treaty": {
+   "title": "欧洲联盟成立",
+   "place": "马斯特里赫特",
+   "text": "《马斯特里赫特条约》生效，欧盟由此成立，并为欧元奠定了基础。"
+  },
+  "2004_enlargement_of_the_European_Union": {
+   "title": "欧盟东扩",
+   "place": "布鲁塞尔",
+   "text": "十个国家（多数曾属苏联势力范围）加入欧盟，这是欧盟规模最大的一次扩大。"
+  }
+ }
+}
