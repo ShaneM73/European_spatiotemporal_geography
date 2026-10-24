@@ -9,6 +9,8 @@ const MESH_STEP = 2;          // terrain pixels per mesh cell
 const SEA_Y = -0.02;
 const SLAB_H = 0.6;
 const PLAY_MS = 1400;
+// bump with each release (and the ?v= in index.html) so browsers don't mix cached old files with new ones
+const DATA_VERSION = 4;
 
 const THEMES = {
   light: {
@@ -95,7 +97,7 @@ function pickLanguage() {
 }
 
 async function loadLanguage(code) {
-  const get = (c) => fetch(`data/i18n/${c}.json`).then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
+  const get = (c) => fetch(`data/i18n/${c}.json?v=${DATA_VERSION}`).then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   fallback ??= await get('en');
   strings = code === 'en' ? fallback : await get(code);
   lang = code;
@@ -158,9 +160,9 @@ async function init() {
   document.documentElement.dataset.theme = state.theme;
   await loadLanguage(pickLanguage());
   $('loadingText').textContent = t('loading');
-  const getJson = (url) => fetch(url).then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
+  const getJson = (url) => fetch(`${url}?v=${DATA_VERSION}`).then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [json, img, ev, pl] = await Promise.all([
-    getJson('data/boundaries.json'), loadImage('data/terrain.png'), getJson('data/events.json'), getJson('data/places.json'),
+    getJson('data/boundaries.json'), loadImage(`data/terrain.png?v=${DATA_VERSION}`), getJson('data/events.json'), getJson('data/places.json'),
   ]);
   data = json; snaps = data.snapshots; meta = data.meta;
   places = pl.places;
