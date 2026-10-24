@@ -58,6 +58,12 @@ const fmtArea = (a) => t('km2', { n: Math.round(a).toLocaleString(lang) });
 const catName = (cat) => strings.categories[cat] ?? fallback.categories[cat];
 // polity names come from the English source data; translations are keyed by that name
 const pn = (name) => strings.polities?.[name] || name;
+// a place's name in the current language at a given year (cities can be renamed), or null if it doesn't exist yet/anymore
+function placeName(p, year) {
+  if ((p.from !== undefined && year < p.from) || (p.to !== undefined && year >= p.to)) return null;
+  const key = p.names ? p.names.find(([until]) => until === null || year < until)[1] : p.id;
+  return strings.places?.[key] ?? fallback.places[key];
+}
 // full localized date for dated events, otherwise the year
 const fmtDate = (e) => (e.date
   ? new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
@@ -123,13 +129,13 @@ const $ = (id) => document.getElementById(id);
 const PRECISION = { 1: 'precision1', 2: 'precision2', 3: 'precision3' };
 
 const state = {
-  idx: 0, scale: 'linear', relief: 30, stack: true, labels: true, events: true, view: 'cube',
+  idx: 0, scale: 'linear', relief: 30, stack: true, labels: true, places: true, events: true, view: 'cube',
   theme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
   selected: null, event: null, hoverEvent: null, playing: false, sliceY: 0,
   lens: { ww1: false, ww2: false }, lensAnim: { ww1: 0, ww2: 0 },
 };
 
-let data, snaps, meta, elev, land, gridW, gridH, events, wars;
+let data, snaps, meta, elev, land, gridW, gridH, events, wars, places;
 let bandGroup, threadGroup;
 let renderer, scene, camera, controls, hemi, sun;
 let slice, terrain, terrainTex, texCanvas, texCtx, slab;
@@ -137,7 +143,7 @@ let ghostGroup, frameLines, axisTicks, traceGroup, eventGroup, eventGuide, event
 let center, size;  // map centre and extent in world units
 let hillCanvas, landCanvas;
 let playTimer = null, cameraTween = null;
-const labelPool = [], axisLabels = [], eventLabelPool = [];
+const labelPool = [], axisLabels = [], eventLabelPool = [], placeLabelPool = [];
 
 init().catch((err) => {
   console.error(err);
@@ -153,10 +159,16 @@ async function init() {
   await loadLanguage(pickLanguage());
   $('loadingText').textContent = t('loading');
   const getJson = (url) => fetch(url).then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [json, img, ev] = await Promise.all([
-    getJson('data/boundaries.json'), loadImage('data/terrain.png'), getJson('data/events.json'),
+  const [json, img, ev, pl] = await Promise.all([
+    getJson('data/boundaries.json'), loadImage('data/terrain.png'), getJson('data/events.json'), getJson('data/places.json'),
   ]);
   data = json; snaps = data.snapshots; meta = data.meta;
+  places = pl.places;
+  for (const p of places) {
+    const [x, y] = laea(p.lon, p.lat);
+    p.x = x / UNIT;
+    p.z = -y / UNIT;
+  }
   wars = ev.wars;
   events = ev.events;
   for (const e of events) e.t = eventTime(e);
@@ -947,6 +959,7 @@ function buildUI() {
   });
   $('stack').addEventListener('change', (e) => { state.stack = e.target.checked; updateGhosts(); });
   $('labelsToggle').addEventListener('change', (e) => { state.labels = e.target.checked; });
+  $('placesToggle').addEventListener('change', (e) => { state.places = e.target.checked; });
   $('eventsToggle').addEventListener('change', (e) => {
     state.events = e.target.checked;
     if (!state.events) selectEvent(null);
@@ -1284,10 +1297,41 @@ function updateLabels() {
   }
   for (let i = evUsed; i < eventLabelPool.length; i++) eventLabelPool[i].style.display = 'none';
 
+  // geographic names on the active slice, in priority order around the polity labels
+  const dist = camera.position.distanceTo(controls.target);
+  const zoomedIn = dist < 60;
+  const year = snaps[state.idx].year;
+  let placeUsed = 0;
+  const drawPlaces = (test) => {
+    if (!state.places) return;
+    for (const pl of places) {
+      if (!test(pl) || (pl.rank > 1 && !zoomedIn)) continue;
+      const name = placeName(pl, year);
+      if (!name) continue;
+      const p = project(pl.x, state.sliceY + Math.max(0, heightAt(pl.x, pl.z)) + 0.2, pl.z);
+      if (!p.visible || p.x < 0 || p.y < 0 || p.x > innerWidth || p.y > innerHeight) continue;
+      const city = pl.type === 'city';
+      const px = pl.type === 'ocean' ? 12.5 : pl.type === 'mountains' ? 11 : 10.5;
+      const w = textWidth(name, px) + (city ? 12 : 4), h = 14;
+      const box = city ? [p.x - 4, p.y - h / 2, p.x + w, p.y + h / 2] : [p.x - w / 2, p.y - h / 2, p.x + w / 2, p.y + h / 2];
+      if (overlaps(box)) continue;
+      placed.push(box);
+      const el = placeLabelPool[placeUsed] || makeLabel(placeLabelPool, 'place-label');
+      if (el.textContent !== name) el.textContent = name;
+      el.className = `place-label ${pl.type}`;
+      el.style.transform = city
+        ? `translate(${p.x}px, ${p.y}px) translate(-3.5px, -50%)`
+        : `translate(${p.x}px, ${p.y}px) translate(-50%, -50%)`;
+      el.style.display = '';
+      placeUsed++;
+    }
+  };
+  const isWater = (pl) => pl.type === 'sea' || pl.type === 'ocean';
+  drawPlaces((pl) => isWater(pl) || (pl.type === 'city' && pl.rank === 1));
+
   // polity labels on the active slice, largest first, skipping overlaps
   let used = 0;
   if (state.labels) {
-    const dist = camera.position.distanceTo(controls.target);
     const minArea = 9000 * (dist / 50) ** 2;
     for (const f of snaps[state.idx].features) {
       const isSel = f.n === state.selected;
@@ -1312,6 +1356,8 @@ function updateLabels() {
     }
   }
   for (let i = used; i < labelPool.length; i++) labelPool[i].style.display = 'none';
+  drawPlaces((pl) => !isWater(pl) && !(pl.type === 'city' && pl.rank === 1));
+  for (let i = placeUsed; i < placeLabelPool.length; i++) placeLabelPool[i].style.display = 'none';
 
   // time axis labels
   const [x, z] = axisTicks.userData.corner;

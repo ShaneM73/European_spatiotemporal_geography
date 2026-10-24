@@ -55,6 +55,38 @@ a { color: inherit; }
 }
 .label.major { font-size: 12px; letter-spacing: 0.1em; opacity: 0.85; }
 .event-label, .axis-label { direction: ltr; unicode-bidi: plaintext; }
+
+/* geographic names: cartographic conventions, water italic blue, relief spaced brown, cities with a dot */
+:root { --water-ink: #4f7a92; --relief-ink: #8a6a45; --desert-ink: #9a7a45; }
+:root[data-theme="dark"] { --water-ink: #8db6cc; --relief-ink: #c9a77c; --desert-ink: #cdb27c; }
+.place-label {
+  position: absolute;
+  left: 0; top: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  font-size: 10.5px;
+  text-shadow: 0 0 3px var(--bg), 0 0 6px var(--bg);
+  will-change: transform;
+  unicode-bidi: plaintext;
+}
+.place-label.ocean, .place-label.sea { color: var(--water-ink); font-style: italic; letter-spacing: 0.08em; }
+.place-label.ocean { font-size: 12.5px; letter-spacing: 0.25em; }
+.place-label.river { color: var(--water-ink); font-style: italic; }
+.place-label.mountains { color: var(--relief-ink); font-size: 9.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
+.place-label.desert { color: var(--desert-ink); font-size: 10px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; font-style: italic; }
+.place-label.city { padding-left: 10px; color: var(--ink); font-weight: 500; opacity: 0.9; }
+.place-label.city::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: 5px; height: 5px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 1px solid var(--bg);
+}
+/* italics and wide tracking don't suit CJK, Hangul or Arabic script */
+:root:is([lang|="zh"], [lang="ja"], [lang="ko"], [lang="ar"]) .place-label { font-style: normal; letter-spacing: 0.04em; }
 .label.sel { color: var(--accent); opacity: 1; }
 .axis-label {
   position: absolute;
