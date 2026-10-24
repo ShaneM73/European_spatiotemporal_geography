@@ -57,7 +57,13 @@
   "ww2": "WWII",
   "ww1Name": "First World War",
   "ww2Name": "Second World War",
-  "places": "Geographic names"
+  "places": "Geographic names",
+  "sideCentral": "Occupied by the Central Powers",
+  "sideEntente": "Taken by the Entente",
+  "sideAxis": "Occupied or annexed by the Axis",
+  "sideSoviet": "Annexed by the USSR",
+  "sideAllied": "Taken by the Allies",
+  "phasesNote": "Wartime territories are approximate."
  },
  "periods": {
   "antiquity": "Classical Antiquity",
@@ -714,5 +720,21 @@
   "leningrad": "Leningrad",
   "algiers": "Algiers",
   "tripoli": "Tripoli"
+ },
+ "phases": {
+  "ww1_1914": "End of 1914: the Western Front digs in",
+  "ww1_1915": "End of 1915: Russian Poland and Serbia occupied",
+  "ww1_1916": "Early 1917: Romania overrun",
+  "ww1_1917": "End of 1917: Caporetto; Baghdad and Jerusalem fall",
+  "ww1_1918": "July 1918: Brest-Litovsk and the spring offensives",
+  "ww1_armistice": "Armistice, November 1918",
+  "ww2_1939a": "Spring 1939: Austria, Czechoslovakia, Albania",
+  "ww2_1939b": "October 1939: Poland partitioned",
+  "ww2_1940": "Summer 1940: Western Europe falls",
+  "ww2_1941": "December 1941: at the gates of Moscow",
+  "ww2_1942": "November 1942: greatest Axis extent",
+  "ww2_1943": "End of 1943: Soviet advance, Italy divided",
+  "ww2_1944": "September 1944: liberation of France",
+  "ww2_1945": "April 1945: final weeks in Europe"
  }
 }

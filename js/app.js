@@ -10,7 +10,7 @@ const SEA_Y = -0.02;
 const SLAB_H = 0.6;
 const PLAY_MS = 1400;
 // bump with each release (and the ?v= in index.html) so browsers don't mix cached old files with new ones
-const DATA_VERSION = 4;
+const DATA_VERSION = 6;
 
 const THEMES = {
   light: {
@@ -19,6 +19,7 @@ const THEMES = {
     palette: ['#d9c7a7', '#b5c9a8', '#e3bcae', '#b8c7da', '#ddd3a3', '#c9b6d2', '#a6cbc4', '#e6c7a0', '#c2c1a8', '#d7aaa9'],
     hillAlpha: 0.6, hemi: 2.4, sun: 1.5,
     events: { conflict: '#c2410c', politics: '#2f5fd0', culture: '#7c3aed', society: '#0f766e' },
+    sides: { central: '#b42318', axis: '#b42318', entente: '#2f5fd0', allied: '#2f5fd0', soviet: '#7a3e9d' },
   },
   dark: {
     bg: '#14171a', ocean: '#1b252c', unclaimed: '#2b2e31', border: 'rgba(16,19,22,0.9)',
@@ -26,6 +27,7 @@ const THEMES = {
     palette: ['#857558', '#62775a', '#8f675f', '#5f7189', '#857d56', '#75657f', '#537c77', '#8f7853', '#727260', '#885e5d'],
     hillAlpha: 0.55, hemi: 2.4, sun: 1.5,
     events: { conflict: '#ff8a5c', politics: '#7aa2ff', culture: '#b794f6', society: '#4fd1c5' },
+    sides: { central: '#ff6b5b', axis: '#ff6b5b', entente: '#7aa2ff', allied: '#7aa2ff', soviet: '#c08ae0' },
   },
 };
 
@@ -58,6 +60,8 @@ const periodOf = (y) => {
 };
 const fmtArea = (a) => t('km2', { n: Math.round(a).toLocaleString(lang) });
 const catName = (cat) => strings.categories[cat] ?? fallback.categories[cat];
+// wartime territory phase titles (they carry their own date, e.g. "November 1942: …")
+const phaseTitle = (key) => strings.phases?.[key] ?? fallback.phases[key];
 // polity names come from the English source data; translations are keyed by that name
 const pn = (name) => strings.polities?.[name] || name;
 // a place's name in the current language at a given year (cities can be renamed), or null if it doesn't exist yet/anymore
@@ -138,7 +142,7 @@ const state = {
 };
 
 let data, snaps, meta, elev, land, gridW, gridH, events, wars, places;
-let bandGroup, threadGroup;
+let bandGroup, threadGroup, phaseGroup, warPhases;
 let renderer, scene, camera, controls, hemi, sun;
 let slice, terrain, terrainTex, texCanvas, texCtx, slab;
 let ghostGroup, frameLines, axisTicks, traceGroup, eventGroup, eventGuide, eventRing;
@@ -161,9 +165,11 @@ async function init() {
   await loadLanguage(pickLanguage());
   $('loadingText').textContent = t('loading');
   const getJson = (url) => fetch(`${url}?v=${DATA_VERSION}`).then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [json, img, ev, pl] = await Promise.all([
-    getJson('data/boundaries.json'), loadImage(`data/terrain.png?v=${DATA_VERSION}`), getJson('data/events.json'), getJson('data/places.json'),
+  const [json, img, ev, pl, wl] = await Promise.all([
+    getJson('data/boundaries.json'), loadImage(`data/terrain.png?v=${DATA_VERSION}`), getJson('data/events.json'),
+    getJson('data/places.json'), getJson('data/war_layers.json'),
   ]);
+  warPhases = wl.wars;
   data = json; snaps = data.snapshots; meta = data.meta;
   places = pl.places;
   for (const p of places) {
@@ -191,6 +197,7 @@ async function init() {
   state.idx = hashIndex() >= 0 ? hashIndex() : snaps.findIndex((s) => s.year === 1914);
   addEventListener('hashchange', () => { if (hashIndex() >= 0 && hashIndex() !== state.idx) setIndex(hashIndex()); });
 
+  buildStops();
   buildScene();
   buildUI();
   applyStaticStrings();
@@ -494,6 +501,45 @@ function buildScene() {
   }
   scene.add(bandGroup, threadGroup);
 
+  // wartime territory phases: translucent layers at their dates inside the war bands
+  phaseGroup = new THREE.Group();
+  for (const [war, phases] of Object.entries(warPhases)) {
+    for (const phase of phases) {
+      const layer = new THREE.Group();
+      layer.userData = { war, t: eventTime({ year: Number(phase.date.slice(0, 4)), date: phase.date }), key: phase.key };
+      for (const side of phase.layers) {
+        const shapes = side.p.map((poly) => {
+          const sh = new THREE.Shape(ringPts(poly[0]));
+          for (const h of poly.slice(1)) sh.holes.push(new THREE.Path(ringPts(h)));
+          return sh;
+        });
+        const geo = new THREE.ShapeGeometry(shapes).rotateX(-Math.PI / 2);
+        const fill = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+          transparent: true, depthWrite: false, side: THREE.DoubleSide,
+        }));
+        const lp = [];
+        for (const poly of side.p) {
+          for (const r of poly) {
+            const n = r.length / 2;
+            for (let k = 0; k < n; k++) {
+              const j = (k + 1) % n;
+              lp.push(r[2 * k] / UNIT, 0, -r[2 * k + 1] / UNIT, r[2 * j] / UNIT, 0, -r[2 * j + 1] / UNIT);
+            }
+          }
+        }
+        const edge = new THREE.LineSegments(
+          new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(lp, 3)),
+          new THREE.LineBasicMaterial({ transparent: true, depthWrite: false }),
+        );
+        fill.userData.side = edge.userData.side = side.side;
+        fill.renderOrder = edge.renderOrder = 2;
+        layer.add(fill, edge);
+      }
+      phaseGroup.add(layer);
+    }
+  }
+  scene.add(phaseGroup);
+
   onResize();
   addEventListener('resize', onResize);
   renderer.domElement.addEventListener('pointermove', onPointerMove);
@@ -568,7 +614,62 @@ function drawSliceTexture() {
     ctx.lineWidth = 4.5;
     for (const f of s.features) if (f.n === state.selected) ctx.stroke(f.path);
   }
+  // wartime territory at the current war stop: tint, diagonal hatching and a dashed outline per side
+  const phase = activePhase();
+  if (phase) {
+    for (const layer of phase.layers) {
+      const colour = t.sides[layer.side];
+      layer.path ??= texturePath(layer.p);
+      ctx.globalAlpha = 0.22;
+      ctx.fillStyle = colour;
+      ctx.fill(layer.path, 'evenodd');
+      ctx.globalAlpha = 0.8;
+      ctx.fillStyle = hatchPattern(ctx, colour);
+      ctx.fill(layer.path, 'evenodd');
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = colour;
+      ctx.lineWidth = 3;
+      ctx.setLineDash([10, 6]);
+      ctx.stroke(layer.path);
+      ctx.setLineDash([]);
+    }
+  }
   terrainTex.needsUpdate = true;
+}
+
+const hatchCache = {};
+function hatchPattern(ctx, colour) {
+  if (!hatchCache[colour]) {
+    const c = document.createElement('canvas');
+    c.width = c.height = 14;
+    const g = c.getContext('2d');
+    g.strokeStyle = colour;
+    g.lineWidth = 2.2;
+    g.beginPath();
+    g.moveTo(-2, 16); g.lineTo(16, -2);
+    g.moveTo(-2, 2); g.lineTo(2, -2);
+    g.moveTo(12, 16); g.lineTo(16, 12);
+    g.stroke();
+    hatchCache[colour] = ctx.createPattern(c, 'repeat');
+  }
+  return hatchCache[colour];
+}
+
+// polygons in projected km -> Path2D in slice-texture pixels
+function texturePath(polys) {
+  const [xmin, , , ymax] = meta.extent;
+  const k = TEX_SCALE / meta.kmPerPx;
+  const path = new Path2D();
+  for (const poly of polys) {
+    for (const r of poly) {
+      for (let i = 0; i < r.length; i += 2) {
+        const px = (r[i] - xmin) * k, py = (ymax - r[i + 1]) * k;
+        i === 0 ? path.moveTo(px, py) : path.lineTo(px, py);
+      }
+      path.closePath();
+    }
+  }
+  return path;
 }
 
 function makeLandCanvas() {
@@ -673,15 +774,57 @@ function positionTrace() {
 
 // ---------------------------------------------------------------- state changes
 
+// Slider stops: every snapshot, plus each territory phase and dated war event while its War focus band is open.
+// War stops keep the borders of the snapshot in force when the war began; a snapshot that falls inside an
+// open band (1945) is moved to the band's end so it follows the war's last stop instead of interrupting it.
+let stops = [];
+const phaseTime = (p) => eventTime({ year: Number(p.date.slice(0, 4)), date: p.date });
+
+function buildStops() {
+  const list = [];
+  snaps.forEach((s, i) => {
+    let t = s.year;
+    for (const [war, [a, b]] of Object.entries(wars)) if (state.lens[war] && t > a && t < b) t = b;
+    list.push({ t, snap: i });
+  });
+  for (const [war, [a, b]] of Object.entries(wars)) {
+    if (!state.lens[war]) continue;
+    const base = snapshotFor(a);
+    for (const p of warPhases[war]) list.push({ t: phaseTime(p), snap: base, war, phase: p, date: p.date });
+    for (const e of events) if (e.war === war && e.t > a && e.t < b) list.push({ t: e.t, snap: base, war, event: e, date: e.date });
+  }
+  list.sort((p, q) => p.t - q.t);
+  stops = list.filter((s, i) => !i || s.t - list[i - 1].t > 0.003 || !s.war);  // merge war stops on the same day
+}
+
+// territory phase in force at the current war stop, if any
+function activePhase() {
+  const s = stops[state.stop];
+  if (!s?.war) return null;
+  let current = null;
+  for (const p of warPhases[s.war]) if (phaseTime(p) <= s.t + 1e-6) current = p;
+  return current;
+}
+
 function updateNowText() {
+  const stop = stops[state.stop];
   const s = snaps[state.idx];
-  const next = snaps[state.idx + 1];
-  $('year').textContent = fmtYear(s.year);
-  $('period').textContent = periodOf(s.year);
-  $('span').textContent = next
-    ? t('snapshotUntil', { n: s.features.length, year: fmtYear(next.year) })
-    : t('snapshotLatest', { n: s.features.length });
-  $('thumbLabel').textContent = shortYear(s.year);
+  if (stop.war) {
+    const phase = activePhase();
+    $('year').textContent = fmtDate({ year: Math.floor(stop.t), date: stop.date });
+    $('period').textContent = periodOf(stop.t);
+    $('span').textContent = t('bordersOf', { year: shortYear(s.year) }) + (phase ? ` · ${phaseTitle(phase.key)}` : '');
+    $('thumbLabel').textContent = new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'short', timeZone: 'UTC' })
+      .format(new Date(`${stop.date}T12:00:00Z`));
+  } else {
+    const next = snaps[state.idx + 1];
+    $('year').textContent = fmtYear(s.year);
+    $('period').textContent = periodOf(s.year);
+    $('span').textContent = next
+      ? t('snapshotUntil', { n: s.features.length, year: fmtYear(next.year) })
+      : t('snapshotLatest', { n: s.features.length });
+    $('thumbLabel').textContent = shortYear(s.year);
+  }
   history.replaceState(null, '', `#year=${s.year}${lang === 'en' ? '' : `&lang=${lang}`}`);
 }
 
@@ -690,6 +833,7 @@ async function setLanguage(code) {
   applyStaticStrings();
   updateNowText();
   buildLegend();
+  buildSideLegend();
   for (const a of axisLabels) if (a.year !== null) a.el.textContent = shortYear(a.year);
   togglePlay(state.playing);
   updateTimeline();
@@ -697,10 +841,19 @@ async function setLanguage(code) {
   updateEventCard();
 }
 
+// go to a snapshot (its plain, non-war stop)
 function setIndex(i, instant = false) {
-  state.idx = Math.max(0, Math.min(snaps.length - 1, i));
+  const snap = Math.max(0, Math.min(snaps.length - 1, i));
+  setStop(stops.findIndex((s) => s.snap === snap && !s.war), instant);
+}
+
+function setStop(i, instant = false) {
+  state.stop = Math.max(0, Math.min(stops.length - 1, i));
+  const stop = stops[state.stop];
+  state.t = stop.t;
+  state.idx = stop.snap;
   updateNowText();
-  if (instant) state.sliceY = timeY(state.idx);
+  if (instant) state.sliceY = yearToY(state.t);
   drawSliceTexture();
   updateTimeline();
   updateSelectionPanel();
@@ -774,7 +927,12 @@ function inWindow(e) {
 
 function selectEvent(e, jump = true) {
   state.event = e;
-  if (e && jump) { togglePlay(false); setIndex(snapshotFor(e.year)); }
+  if (e && jump) {
+    togglePlay(false);
+    // with the war's lens open, the event has its own stop showing the territory at that date
+    const own = stops.findIndex((s) => s.event === e);
+    if (own >= 0) setStop(own); else setIndex(snapshotFor(e.year));
+  }
   updateEventCard();
   updateTimeline();
 }
@@ -816,6 +974,16 @@ function updateLens() {
     band.children[1].material.color.set(t.accent);
     band.children[1].material.opacity = 0.45 * k;
   }
+  for (const layer of phaseGroup.children) {
+    const k = state.lensAnim[layer.userData.war];
+    layer.visible = k > 0.01 && state.view !== 'map';
+    if (!layer.visible) continue;
+    layer.position.y = yearToY(layer.userData.t) + 0.03;
+    for (const obj of layer.children) {
+      obj.material.color.set(t.sides[obj.userData.side]);
+      obj.material.opacity = (obj.isMesh ? 0.3 : 0.75) * k;
+    }
+  }
   for (const thread of threadGroup.children) {
     const k = state.lensAnim[thread.userData.war];
     thread.visible = k > 0.01 && state.events && state.view !== 'map';
@@ -835,9 +1003,34 @@ function onTimeWarp() {
   updateLens();
 }
 
+// legend for the wartime territory layers of the open lenses
+const WAR_SIDES = { ww1: ['central', 'entente'], ww2: ['axis', 'soviet', 'allied'] };
+function buildSideLegend() {
+  const box = $('sideLegend');
+  const sides = Object.keys(WAR_SIDES).filter((w) => state.lens[w]).flatMap((w) => WAR_SIDES[w]);
+  box.hidden = !sides.length;
+  box.innerHTML = '';
+  for (const side of sides) {
+    const item = document.createElement('span');
+    const sw = document.createElement('i');
+    sw.style.background = THEMES[state.theme].sides[side];
+    item.append(sw, t(`side${side[0].toUpperCase()}${side.slice(1)}`));
+    box.appendChild(item);
+  }
+  if (sides.length) {
+    const note = document.createElement('em');
+    note.textContent = t('phasesNote');
+    box.appendChild(note);
+  }
+}
+
 function setLens(war, on) {
   state.lens[war] = on;
   for (const b of $('focus').querySelectorAll('button')) b.classList.toggle('on', state.lens[b.dataset.war]);
+  buildSideLegend();
+  // stops change with the lens; stay on the same snapshot when leaving a war stop
+  buildStops();
+  if (!on) setIndex(state.idx);
   // opening a lens jumps to the borders in force when that war began and frames the band
   if (on) {
     togglePlay(false);
@@ -915,6 +1108,7 @@ function applyTheme() {
   drawSliceTexture();
   updateGhosts();
   updateLens();
+  buildSideLegend();
   buildTrace();
   updateSelectionPanel();
   updateEventCard();
@@ -929,10 +1123,10 @@ function togglePlay(force) {
   $('play').setAttribute('aria-label', t(state.playing ? 'pause' : 'play'));
   clearInterval(playTimer);
   if (!state.playing) return;
-  if (state.idx === snaps.length - 1) setIndex(0);
+  if (state.stop === stops.length - 1) setStop(0);
   playTimer = setInterval(() => {
-    if (state.idx >= snaps.length - 1) return togglePlay(false);
-    setIndex(state.idx + 1);
+    if (state.stop >= stops.length - 1) return togglePlay(false);
+    setStop(state.stop + 1);
   }, PLAY_MS);
 }
 
@@ -988,8 +1182,9 @@ function buildUI() {
     const r = track.getBoundingClientRect();
     const frac = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
     let best = 0;
-    snaps.forEach((s, i) => { if (Math.abs(timeY(i) / TIME_H - frac) < Math.abs(timeY(best) / TIME_H - frac)) best = i; });
-    if (best !== state.idx) setIndex(best);
+    const dist = (s) => Math.abs(yearToY(s.t) / TIME_H - frac);
+    stops.forEach((s, i) => { if (dist(s) < dist(stops[best])) best = i; });
+    if (best !== state.stop) setStop(best);
   };
   track.addEventListener('pointerdown', (e) => {
     togglePlay(false);
@@ -1002,10 +1197,10 @@ function buildUI() {
 
   addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' && e.target.type === 'range') return;
-    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { togglePlay(false); setIndex(state.idx + 1); e.preventDefault(); }
-    else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { togglePlay(false); setIndex(state.idx - 1); e.preventDefault(); }
-    else if (e.key === 'Home') setIndex(0);
-    else if (e.key === 'End') setIndex(snaps.length - 1);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { togglePlay(false); setStop(state.stop + 1); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { togglePlay(false); setStop(state.stop - 1); e.preventDefault(); }
+    else if (e.key === 'Home') setStop(0);
+    else if (e.key === 'End') setStop(stops.length - 1);
     else if (e.key === ' ' && e.target.tagName !== 'BUTTON') { togglePlay(); e.preventDefault(); }
     else if (e.key === 'Escape') { select(null); selectEvent(null); }
   });
@@ -1029,7 +1224,14 @@ function buildUI() {
     const el = document.createElement('div');
     el.className = 'axis-label band-name';
     $('labels').appendChild(el);
-    axisLabels.push({ el, year: (a + b) / 2, war, name: true });
+    axisLabels.push({ el, year: b, war, name: true });
+    // each territory phase gets a dated title beside its layer
+    for (const phase of warPhases[war]) {
+      const pel = document.createElement('div');
+      pel.className = 'axis-label phase';
+      $('labels').appendChild(pel);
+      axisLabels.push({ el: pel, year: eventTime({ year: Number(phase.date.slice(0, 4)), date: phase.date }), war, phase });
+    }
   }
   const nowLabel = document.createElement('div');
   nowLabel.className = 'axis-label now';
@@ -1059,9 +1261,19 @@ function updateTimeline() {
   if (state.selected) snaps.forEach((s, i) => { if (s.features.some((f) => f.n === state.selected)) present.add(i); });
   snaps.forEach((s, i) => {
     const el = document.createElement('div');
-    el.className = 'tick' + (i === state.idx ? ' on' : '') + (present.has(i) ? ' present' : '');
+    const onSnapshot = i === state.idx && !stops[state.stop]?.war;
+    el.className = 'tick' + (onSnapshot ? ' on' : '') + (present.has(i) ? ' present' : '');
     el.style.left = `${(timeY(i) / TIME_H) * 100}%`;
     el.title = fmtYear(s.year);
+    ticks.appendChild(el);
+  });
+  // ticks for the territory phases of open bands (war events already have their diamonds)
+  stops.forEach((s, i) => {
+    if (!s.phase) return;
+    const el = document.createElement('div');
+    el.className = 'tick phase-tick' + (i === state.stop ? ' on' : '');
+    el.style.left = `${(yearToY(s.t) / TIME_H) * 100}%`;
+    el.title = phaseTitle(s.phase.key);
     ticks.appendChild(el);
   });
   for (const [war, [a, b]] of Object.entries(wars)) {
@@ -1094,7 +1306,7 @@ function updateTimeline() {
       ticks.appendChild(el);
     }
   }
-  $('thumb').style.left = `${(timeY(state.idx) / TIME_H) * 100}%`;
+  $('thumb').style.left = `${(yearToY(state.t) / TIME_H) * 100}%`;
 }
 
 function updateSelectionPanel() {
@@ -1238,7 +1450,7 @@ function frame() {
   }
 
   // slide the active slice along the time axis
-  const goal = timeY(state.idx);
+  const goal = yearToY(state.t);
   const prev = state.sliceY;
   state.sliceY += (goal - state.sliceY) * 0.12;
   if (Math.abs(goal - state.sliceY) < 0.002) state.sliceY = goal;
@@ -1363,20 +1575,32 @@ function updateLabels() {
 
   // time axis labels
   const [x, z] = axisTicks.userData.corner;
+  const phaseYs = [];
   const openBand = (year) => Object.entries(wars).some(([w, [a, b]]) => state.lensAnim[w] > 0.5 && year >= a - 3 && year <= b + 3);
   for (const a of axisLabels) {
     const year = a.year ?? snaps[state.idx].year;
     const y = a.year === null ? state.sliceY : yearToY(year);
-    // band names sit on the cube's opposite (east) edge, clear of the year labels and the panel
-    const p = a.name ? project(center.x + size.w / 2 + 1, y, z) : project(x - 1.2, y, z);
+    // band names and phase titles sit on the cube's opposite (east) edge, clear of the year labels and the panel
+    const east = a.name || a.phase;
+    const p = east ? project(center.x + size.w / 2 + 1, a.name ? y + 0.9 : y, z) : project(x - 1.2, y, z);
     let show = p.visible && state.view !== 'map';
     if (a.war) show &&= state.lensAnim[a.war] > 0.5;
     else if (a.year !== null) show &&= !openBand(year);  // round-year labels give way inside open bands
-    if (!a.name && a.year !== null) show &&= Math.abs(y - state.sliceY) > 0.5;
+    if (!east && a.year !== null) show &&= Math.abs(y - state.sliceY) > 0.5;
+    if (a.phase) {
+      // phase titles are stacked tightly; keep only those with room
+      show &&= state.view !== 'map' && phaseYs.every((py) => Math.abs(py - p.y) > 13);
+      if (show) phaseYs.push(p.y);
+    }
     a.el.style.display = show ? '' : 'none';
+    if (!show) continue;
     if (a.year === null) a.el.textContent = shortYear(year);
     if (a.name) a.el.textContent = t(`${a.war}Name`);
-    a.el.style.transform = `translate(${p.x}px, ${p.y}px) translate(${a.name ? '0' : '-100%'}, -50%)`;
+    if (a.phase) {
+      const text = phaseTitle(a.phase.key);
+      if (a.el.textContent !== text) a.el.textContent = text;
+    }
+    a.el.style.transform = `translate(${p.x}px, ${p.y}px) translate(${east ? '0' : '-100%'}, -50%)`;
   }
 }
 

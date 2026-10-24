@@ -57,7 +57,13 @@
   "ww2": "II. DS",
   "ww1Name": "Birinci Dünya Savaşı",
   "ww2Name": "İkinci Dünya Savaşı",
-  "places": "Coğrafi adlar"
+  "places": "Coğrafi adlar",
+  "sideCentral": "İttifak Devletleri tarafından işgal edildi",
+  "sideEntente": "İtilaf Devletleri tarafından alındı",
+  "sideAxis": "Mihver Devletleri tarafından işgal veya ilhak edildi",
+  "sideSoviet": "SSCB tarafından ilhak edildi",
+  "sideAllied": "Müttefikler tarafından alındı",
+  "phasesNote": "Savaş dönemi toprakları yaklaşıktır."
  },
  "periods": {
   "antiquity": "Klasik Antik Çağ",
@@ -1250,5 +1256,21 @@
   "leningrad": "Leningrad",
   "algiers": "Cezayir",
   "tripoli": "Trablus"
+ },
+ "phases": {
+  "ww1_1914": "1914 sonu: Batı Cephesi siperlere gömüldü",
+  "ww1_1915": "1915 sonu: Rus Polonyası ve Sırbistan işgal edildi",
+  "ww1_1916": "1917 başı: Romanya istila edildi",
+  "ww1_1917": "1917 sonu: Caporetto; Bağdat ve Kudüs düştü",
+  "ww1_1918": "Temmuz 1918: Brest-Litovsk ve bahar taarruzları",
+  "ww1_armistice": "Ateşkes, Kasım 1918",
+  "ww2_1939a": "1939 baharı: Avusturya, Çekoslovakya, Arnavutluk",
+  "ww2_1939b": "Ekim 1939: Polonya paylaşıldı",
+  "ww2_1940": "1940 yazı: Batı Avrupa düştü",
+  "ww2_1941": "Aralık 1941: Moskova kapılarında",
+  "ww2_1942": "Kasım 1942: Mihver'in en geniş yayılımı",
+  "ww2_1943": "1943 sonu: Sovyet ilerleyişi, İtalya bölündü",
+  "ww2_1944": "Eylül 1944: Fransa'nın kurtuluşu",
+  "ww2_1945": "Nisan 1945: Avrupa'da son haftalar"
  }
 }

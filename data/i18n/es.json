@@ -57,7 +57,13 @@
   "ww2": "IIGM",
   "ww1Name": "Primera Guerra Mundial",
   "ww2Name": "Segunda Guerra Mundial",
-  "places": "Nombres geográficos"
+  "places": "Nombres geográficos",
+  "sideCentral": "Ocupado por las Potencias Centrales",
+  "sideEntente": "Tomado por la Entente",
+  "sideAxis": "Ocupado o anexionado por el Eje",
+  "sideSoviet": "Anexionado por la URSS",
+  "sideAllied": "Tomado por los Aliados",
+  "phasesNote": "Los territorios en tiempo de guerra son aproximados."
  },
  "periods": {
   "antiquity": "Antigüedad clásica",
@@ -1250,5 +1256,21 @@
   "leningrad": "Leningrado",
   "algiers": "Argel",
   "tripoli": "Trípoli"
+ },
+ "phases": {
+  "ww1_1914": "Finales de 1914: el frente occidental se atrinchera",
+  "ww1_1915": "Finales de 1915: Polonia rusa y Serbia ocupadas",
+  "ww1_1916": "Principios de 1917: Rumanía invadida",
+  "ww1_1917": "Finales de 1917: Caporetto; caen Bagdad y Jerusalén",
+  "ww1_1918": "Julio de 1918: Brest-Litovsk y las ofensivas de primavera",
+  "ww1_armistice": "Armisticio, noviembre de 1918",
+  "ww2_1939a": "Primavera de 1939: Austria, Checoslovaquia, Albania",
+  "ww2_1939b": "Octubre de 1939: Polonia repartida",
+  "ww2_1940": "Verano de 1940: cae Europa occidental",
+  "ww2_1941": "Diciembre de 1941: a las puertas de Moscú",
+  "ww2_1942": "Noviembre de 1942: máxima extensión del Eje",
+  "ww2_1943": "Finales de 1943: avance soviético, Italia dividida",
+  "ww2_1944": "Septiembre de 1944: liberación de Francia",
+  "ww2_1945": "Abril de 1945: últimas semanas en Europa"
  }
 }

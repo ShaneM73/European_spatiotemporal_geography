@@ -203,6 +203,10 @@ h1 { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.25; letter-spa
 .legend i { width: 7px; height: 7px; transform: rotate(45deg); border-radius: 1px; }
 
 .seg.multi button.on { background: var(--accent); color: #fff; }
+.legend.sides i { width: 12px; height: 9px; transform: none; border-radius: 2px; opacity: 0.75; }
+.legend.sides em { flex-basis: 100%; font-size: 10.5px; }
+.axis-label.phase { padding: 0 0 0 8px; color: var(--muted); font-size: 10px; }
+.axis-label.phase b { color: var(--ink); font-weight: 600; margin-right: 4px; }
 .axis-label.band { color: var(--accent); opacity: 0.85; font-size: 10.5px; }
 .axis-label.band-name {
   padding: 0 0 0 8px;
@@ -212,6 +216,8 @@ h1 { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.25; letter-spa
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+.tick.phase-tick { top: 8px; height: 14px; width: 2px; margin-left: -1px; background: var(--accent); opacity: 0.6; }
+.tick.phase-tick.on { opacity: 1; width: 3px; margin-left: -1.5px; }
 .tl-band {
   position: absolute;
   top: 6px;

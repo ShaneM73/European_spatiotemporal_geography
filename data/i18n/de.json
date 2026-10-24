@@ -57,7 +57,13 @@
   "ww2": "2. WK",
   "ww1Name": "Erster Weltkrieg",
   "ww2Name": "Zweiter Weltkrieg",
-  "places": "Geografische Namen"
+  "places": "Geografische Namen",
+  "sideCentral": "Von den Mittelmächten besetzt",
+  "sideEntente": "Von der Entente eingenommen",
+  "sideAxis": "Von den Achsenmächten besetzt oder annektiert",
+  "sideSoviet": "Von der UdSSR annektiert",
+  "sideAllied": "Von den Alliierten eingenommen",
+  "phasesNote": "Kriegszeitliche Gebiete sind Näherungen."
  },
  "periods": {
   "antiquity": "Klassische Antike",
@@ -1250,5 +1256,21 @@
   "leningrad": "Leningrad",
   "algiers": "Algier",
   "tripoli": "Tripolis"
+ },
+ "phases": {
+  "ww1_1914": "Ende 1914: Die Westfront erstarrt im Stellungskrieg",
+  "ww1_1915": "Ende 1915: Russisch-Polen und Serbien besetzt",
+  "ww1_1916": "Anfang 1917: Rumänien überrannt",
+  "ww1_1917": "Ende 1917: Caporetto; Fall von Bagdad und Jerusalem",
+  "ww1_1918": "Juli 1918: Brest-Litowsk und die Frühjahrsoffensiven",
+  "ww1_armistice": "Waffenstillstand, November 1918",
+  "ww2_1939a": "Frühjahr 1939: Österreich, Tschechoslowakei, Albanien",
+  "ww2_1939b": "Oktober 1939: Polen geteilt",
+  "ww2_1940": "Sommer 1940: Westeuropa fällt",
+  "ww2_1941": "Dezember 1941: vor den Toren Moskaus",
+  "ww2_1942": "November 1942: größte Ausdehnung der Achsenmächte",
+  "ww2_1943": "Ende 1943: sowjetischer Vormarsch, Italien geteilt",
+  "ww2_1944": "September 1944: Befreiung Frankreichs",
+  "ww2_1945": "April 1945: die letzten Wochen in Europa"
  }
 }
