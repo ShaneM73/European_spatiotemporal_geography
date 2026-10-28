@@ -1,5 +1,9 @@
 # European Spatiotemporal Geography
 
+**▶ Open the live web app: [shanem73.github.io/European_spatiotemporal_geography](https://shanem73.github.io/European_spatiotemporal_geography/)**
+
+**Designer and main contributor:** Prof. Xin (Shane) Miao, Missouri State University ([@ShaneM73](https://github.com/ShaneM73))
+
 An interactive 3D **space–time cube** of Europe, North Africa and the Near East, from Iceland and Morocco to Persia and the Urals. A topographic relief map shows political boundaries at a chosen moment. It slides along a vertical time axis from 500 BCE to 2010, through the stacked boundary layers of 44 historical snapshots. 109 historic events are placed in the cube at their place and time, including day-dated campaigns of both world wars.
 
 ## Features
@@ -92,7 +96,7 @@ These are original compilations, released under this repository's GPL-3.0 licenc
 
 ### How to cite
 
-> ShaneM73 (2026). *European Spatiotemporal Geography: a 3D space–time atlas of Europe, North Africa and the Near East, 500 BCE – 2010.* GitHub, https://github.com/ShaneM73/European_spatiotemporal_geography. Web app: https://shanem73.github.io/European_spatiotemporal_geography/
+> Miao, Xin (Shane) (2026). *European Spatiotemporal Geography: a 3D space–time atlas of Europe, North Africa and the Near East, 500 BCE – 2010.* GitHub, https://github.com/ShaneM73/European_spatiotemporal_geography. Web app: https://shanem73.github.io/European_spatiotemporal_geography/
 
 If you use the boundary data, please also credit historical-basemaps (above).
 
